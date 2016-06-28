@@ -1,6 +1,13 @@
 \documentclass{llncs}
 \usepackage{graphicx}
 \usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{todonotes} % use this to see the comments
 %\usepackage[textsize=tiny]{todonotes} % use this to see SMALL : ) comments
@@ -82,19 +89,26 @@ Abstract will appear here. \textit{When it's time!}
     Outline of the paper.(Here we give all name of the section in the paper)\\
     
     % from hobbit
-    The current era stands as a witness to the enormous explosion of data on the Web referred to as Linked Data\footnote{http://lod-cloud.net/}. With such a rapid growth in the amount of data, managing this data has also become a challenging issue. Modern day organizations have become increasingly interested in searching for data management solutions, suited best for their needs, based on Linked Data. At the same time choosing the best data management solution has become a problem analogous to searching for a needle in a gigantic haystack. With limited domain expertise, information and non-stop expansion of data the need for a standardised framework to benchmark and analyse the existing diverse data management solutions has become more critical. 
+    The current era stands as a witness to the enormous explosion of structured data on the Web referred to as Linked Data\footnote{http://lod-cloud.net/}. With such a rapid growth in the amount of data, managing this data has also become a challenging issue. Modern day organizations have become increasingly interested in searching for data management solutions, suited best for their needs, based on Linked Data. At the same time choosing the best data management solution has become a problem analogous to searching for a needle in a gigantic haystack. With limited domain expertise, information and non-stop expansion of data the need for a standardised framework to benchmark and analyse the existing diverse data management solutions has become more critical. 
     
     \todoinline{one more paragraph to be added here about some current activity, etc on benchmarking platforms}
     
-    In this paper we present LIMUS, an open extensible solution towards benchmarking a wide variety of NoSQL data management solutions (DMS). LITMUS is focused to to support organizations/institutions which aspire to use Linked Data management technologies in a wide spectrum of applications and magnitudes. In doing so, LITMUS will provide realistic performance evaluation platform covering a plethora of heterogeneous technologies (see \ref{litmus_framework}) for storage and querying benchmarking. 
+    In this paper we present LITMUS, an open extensible solution towards benchmarking a wide variety of NoSQL data management solutions (DMS). LITMUS is focused to to support organizations/institutions which aspire to use Linked Data management technologies in a wide spectrum of applications and magnitudes. In doing so, LITMUS will provide realistic performance evaluation platform covering a plethora of heterogeneous technologies (see \ref{litmus_framework}) for storage and querying benchmarking. 
     
     \todoinline{outline of paper if needed}
 
 \section{Motivation and Idea}
     
-    Too much data, Too many DMSs. Which one to choose? where to compare? How to compare? Easy to use, Easy to maintain and transparent assessment. 
+    Benchmarking refers to --- \\
+    
+    Issues: \\Too much data, Too many DMSs. Which one to choose? where to compare? How to compare? Easy to use, Easy to maintain and transparent assessment.
+    
+    Research Gaps and Opportunities: \\
     There is a lack of effort to benchmark and compare Data Management Solutions (DMS) from cross domains. There exist no such open, extensible and reusable framework exists to the best of our knowledge which allows to explore, analyse and play with a wide range of DMSs.
-        
+    
+    Our contribution:\\
+    needed here?
+    
 
 
 %========================================THE BENCHMARK ALA-CARTE======================================
@@ -142,9 +156,6 @@ Abstract will appear here. \textit{When it's time!}
 
     \subsection{Architecture Overview}
         The description of the architecture goes here.. 
-        
-
-        
         \begin{figure}[t]
             \centering
             %\includegraphics{}
@@ -154,23 +165,34 @@ Abstract will appear here. \textit{When it's time!}
         \end{figure}
     
     \subsection{Challenges}
+    \todoinline{pending}
         \begin{enumerate}
-            \item Challenge 1 (C1): Normalising the data
+            \item Challenge 1 \framebox[1.03\width]{C1}: Normalising the data
             Define the problem, possibly with a simple diagram and/or a table of different data formats which are required by these tools.
-            \item Challenge 2 (C2): Converting the Queries
+            \item Challenge 2 \framebox[1.03\width]{C2}: Converting the Queries
             Define the problem of query conversion and why it is needed to be solved. Again with a block diagram from the framework and/or a table displaying the discrete needs of each tool in terms of query languages they use.
             Also raise the issue of lack of a standard/intermediate representation mechanism. Why it is needed so badly, now more than ever.
             also propose a solution approach in the block diagram (as mentioned above).
+            \item Challenge 3 \framebox[1.03\width]{C3}: Performance features/indicators: what features, metrics, indicators to consider for the eval apart from the ones that exist such precision recall, index, storage, graph algos, etc.
         \end{enumerate}
         
-    \subsection{Research gaps to be filled by Litmus}
-    Our focus in this paper is to answer the following research questions: 
-        \begin{itemize}
-            \item What is the state of the art for indexing approaches for structured data?
-            \item Develop an open extensible framework for benchmarking performance of various indexing approaches.
-            \item Study the impact of applying various NoSQL RDF data indexing techniques on heterogeneous data
-        \end{itemize}
+    \subsection{Research gaps to be filled by LITMUS}
+    \todoiteminlinedone{Harsh}{all}{Please review}
+    The artifacts produced by the research and development activity to be undertaken for the LITMUS project can be grouped in to two groups: \textit{(A1)} scientific studies/surveys and \textit{(A2)} software deliverables. 
     
+    \framebox[1.03\width]{A1}\textit{ Scientific studies/surveys such as:} 
+        \begin{itemize}
+            \item Survey of the query language expressivity features for overcoming the language barrier
+            \item A study of a wide range of indexing and storage techniques used for fast and efficient retrieval of structured data
+            \item A detailed study of performance features/indicators in the domain of query and data over RDF (structured) data. On top of the existing performance evaluation measures, we will study and analyse a series of other features such as the design of indexes and corresponding data structures on the retrieval performance for structured data. A detailed examination of the correlation between query typology and data storage and retrieval mechanisms.
+        \end{itemize}
+        
+        \framebox[1.03\width]{A2} \textit{software deliverables (i.e. algorithm(s), tools, etc) including:} 
+        \begin{itemize}
+            \item A mechanism/range of solutions for converting RDF data to multiple data formats, such as: CSV (Comma Separared Value), JSON (JavaScript Object Notation),  and SQL (Structured Query Language) for ensure easy data loading for cross domain DMS's. 
+            \item A novel SPARQL to any query converting mechanism
+            \item A wrapper allowing easy integration and deployment of third party DMS's for realistic benchmarking
+            \item A universal benchmarking platform: We will develop an open extensible framework for cross domain performance evaluation of query and storage in RDF DMS's. The proposed benchmark will be scalable for large scale evaluations (such as Big Data).
 
 
 \section{NoSQL Data management systems}
@@ -216,24 +238,25 @@ Abstract will appear here. \textit{When it's time!}
 
 %========================================EVALUATION======================================
 \section{Evaluation parameters}
-    \subsection{Experiment setup}
-    dexription of the setup, other parameters (if required, mostly not in this paper)
-    
+    \todoiteminline{Harsh}{co-authors}{Since we mentioned that we plan to produce a study of a wide range of performance indicators in sec 3.4, I propose we can just leave this for now with a small summary table of metrics used these days. or we can just skip this section all at once.}
     \subsection{Evaluation parameters}
+    System n VS m VS o VS p VS r VS s 
     
-    system n VS m VS o VS p VS r VS s \\
     
-    
-\section{Case study?}
+\section{Case study?, User scenairo?}
 \todoinline{do we need one?}
 
 
 %========================================RELATED WORK======================================
 \section{Related work}\label{relwork}
     \todoiteminline{Harsh}{co-authors}{This is pending}
+    Nowdays, the most popular model of relational databases have standard banchmark suites such as TPC~\cite{Nambiar2011} benchmark suite. However, the emerging field of Linked Data still lacks such support. We reivew current state-of-the-art work done on Linked Data banchmarking and explain how our aproach will enhances over them.
     
+
     \begin{itemize}
         \item survey papers and other formal publications on benchmarking different graph stores, comparison of various triple stores and so on
+        \href{https://docs.google.com/document/d/1DbtHvE4oaSuusPjeM2nGNBzrRArQt_rlCh3J5g2aIAE/edit?usp=sharing}{Literature review of Related Work}
+        
         \item Papers on data, queries and other tools used for benchmarking
     \end{itemize}
     
@@ -246,11 +269,11 @@ Abstract will appear here. \textit{When it's time!}
 %========================================CONCLUSION AND FUTURE WORK======================================
 
 \section{Conclusion \& Future directions}
-
+We plan to do what we said in the order we said!
 \section*{Acknowledgments}\label{sec:Acknowledgments}
 This project is supported by funding received from the European Unions Horizon 2020 research and innovation program under the Marie Sklodowska-Curie grant agreement No 642795 (WDAqua ITN).
 
-\bibliographystyle{filename}
+\bibliographystyle{abbrv}
 \bibliography{ref}
 
 \end{document}
