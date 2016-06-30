@@ -63,7 +63,7 @@
 %\title{Graph vs RDF stores: An Empirical Evaluation of NoSQL RDF Data Management Solutions}
 %\title{An Empirical Evaluation of NoSQL RDF Data Management Solutions}
 %\title{Benchmarking RDF Data Management Solutions}
-\title{LITMUS: An Open Extensible Benchmarking Platform for RDF Data Management Solutions}
+\title{LITMUS: An Open Extensible Platform for Benchmarking RDF Data Management Solutions}
 
 
 \author{Harsh Thakkar, Mohnish Dubey, ... }
@@ -80,15 +80,6 @@ Advancements in the field of Linked data have led to an enormous outburst of str
 
 \section{Introduction}\label{sec:Introduction}
     \todoiteminline{Harsh}{co-authors}{This is pending}
-    
-    Introduction will appear here. your \framebox[1.0\width]{Box here} and text here. 
-    
-    {\color{green} outline:
-    General introduction of current state of data and tool explosion\\
-    Recent activity in this research area\\
-    Our main contribution in this paper/work\\
-    Outline of the paper.(Here we give all name of the section in the paper)\\ }
-    
     The current era stands as a witness to the enormous explosion of structured data on the Web referred to as Linked Data\footnote{http://lod-cloud.net/}. With such a rapid growth in the amount of data, managing this data has also become a challenging issue. Modern day organizations have become increasingly interested in searching for data management solutions, suited best for their needs, based on Linked Data. At the same time choosing the best data management solution has become a problem analogous to searching for a needle in a gigantic haystack. With limited domain expertise, information and non-stop expansion of data the need for a standardised framework to benchmark and analyse the existing diverse data management solutions has become more critical. 
     
     \todoinline{one more paragraph to be added here about some current activity, etc on benchmarking platforms}
@@ -111,23 +102,20 @@ Advancements in the field of Linked data have led to an enormous outburst of str
     The most popular model of relational databases have standard benchmark suites such as TPC~\cite{Nambiar2011} benchmark dealing with transaction processing, querying performance, data maintenance and other operations for a relational database.
     However, its general abstraction is not suitable for other data models, as they have been specifically made for relational databases.
     
-    For benchmarking functions of graph databases, there are some existing techniques on their early stages (e.g HPC Scalable Graph Analysis Benchmark~\cite{Dominguez-Sal:2010:SGD:1927585.1927590}, Graph 500~\cite{murphy2010introducing}, XGDBench~\cite{conf/cloudcom/DayarathnaS12}, etc) dealing with graph suitability and graph analysis.
+    For benchmarking functions of graph databases, there are some existing techniques on their early stages (e.g HPC Scalable Graph Analysis Benchmark~\cite{Dominguez-Sal:2010:SGD:1927585.1927590}, Graph 500~\cite{murphy2010introducing}, XGDBench~\cite{conf/cloudcom/DayarathnaS12}, etc) dealing with graph suitability and graph analysis and they fail on defining standards for graph modeling and query languages.
     
+    Existing RDF benchmarks have several limitations, mainly because they do not provide enough metadata for representing datasets, and support only some type of queries. 
+    In this context there is some work done on data integration benchmarks, mainly on entity annotation where GERBIL~\cite{Usbeck:2015:GGE:2736277.2741626} offers an easy-to-use platform for the agile comparison of annotators using multiple datasets and uniform measuring approaches.
     
+    Recently, the ongoing work at LDBC council \cite{DBLP:journals/sigmod/AnglesBLF0ENMKT14} try to combine benchmarks for graph and RDF data management systems.
     
-    
-    
-    
-    
-    
-    However, the emerging field of Linked Data still lacks such support.
-    We felt it was necessary to define a new benchmark for Linked Data Systems.
+    However, we felt it was necessary to define a new benchmark for Linked Data Systems.
     First, most data stores do not have an interface which allow user to execute SPARQl queries against any kind of end data structure representation, or they only support a subset of operations.
     Toward, the complex queries of many existing SPARQL benchmarks were not applicable.
     Second, the use cases of Linked Data are often different than traditional database applications, so that narrow domain benchmarks may not match the intended usage of the system.
     Furthermore, our goal is to develop a benchmarking framework that could be used to explore the performance space of different systems, rather than to measure a single performance number representing a particular application.
     
-    Designing an accurate and scalability benchmark, and force its usage to gather accurate results, is non-trivial. LDBC council \cite{DBLP:journals/sigmod/AnglesBLF0ENMKT14}
+    Designing an accurate and scalability benchmark, and force its usage to gather accurate results, is non-trivial. 
     
   There is a lack of effort to benchmark and compare Data Management Solutions (DMS) from cross domains. There exist no such open, extensible and reusable framework exists to the best of our knowledge which allows to explore, analyse and play with a wide range of DMSs.
   Our aim is to satisfy these criteria by developing a benchmark to serving systems, portable to diferend end data structure representation through our extensibility framework, scalable to large scale data sets, and employing any kind of operations on top of it.
@@ -141,10 +129,7 @@ Advancements in the field of Linked data have led to an enormous outburst of str
     \end{itemize}
     
     
-    Other benchmarks, Other such frameworks? \\
-    LDBC council work to be cited
-    Gerbil to be cited
-    BAT-framework ot be cited \\
+    Other benchmarks, Other such frameworks? LDBC council work to be cited Gerbil to be cited BAT-framework ot be cited 
 
 \section{Objectives and Outcomes}
     \subsection{Focus of the LITMUS framework}
@@ -153,14 +138,14 @@ Advancements in the field of Linked data have led to an enormous outburst of str
     \subsection{Research gaps to be filled by LITMUS}
     The artifacts produced by the research and development activity to be undertaken for the LITMUS project can be grouped in to two groups: \textit{(A1)} scientific studies/surveys and \textit{(A2)} software deliverables. 
     
-    \framebox[1.03\width]{A1}\textit{ Scientific studies/surveys such as:} 
+    \framebox[1.1\width]{\textbf{A1}}\textit{ Scientific studies/surveys such as:} 
         \begin{itemize}
             \item Survey of the query language expressivity features for overcoming the language barrier
             \item A study of a wide range of indexing and storage techniques used for fast and efficient retrieval of structured data
             \item A detailed study of performance features/indicators in the domain of query and data over RDF (structured) data. On top of the existing performance evaluation measures, we will study and analyse a series of other features such as the design of indexes and corresponding data structures on the retrieval performance for structured data. A detailed examination of the correlation between query typology and data storage and retrieval mechanisms.
         \end{itemize}
         
-        \framebox[1.03\width]{A2} \textit{Software deliverables (i.e. algorithm(s), tools, etc) including:} 
+        \framebox[1.1\width]{\textbf{A2}} \textit{Software deliverables (i.e. algorithm(s), tools, etc) including:} 
         \begin{itemize}
             \item A mechanism/range of solutions for converting RDF data to multiple data formats, such as: CSV (Comma Separared Value), JSON (JavaScript Object Notation),  and SQL (Structured Query Language) for ensure easy data loading for cross domain DMS's. 
             \item A novel SPARQL to any query converting mechanism
@@ -170,52 +155,59 @@ Advancements in the field of Linked data have led to an enormous outburst of str
 
 
     \subsection{Target audience}
-        \todoiteminline{Harsh}{all}{Pending}
+        \begin{itemize}
+            \item \textbf{Technology Vendors:}
+            One of the profiteers from this work will be the Industrial/Commercial fraternity (such as system and data analysts, system developers, system architects) who thrives towards developing advanced DMS for an efficient consumption of Big Linked Data.
+            \item \textbf{Technology Consumers:}
+            The users (personnel from the private and commercial organisations, associations, etc ) searching for the best solution for their needs can simply compare a wide range of DMS against a spectrum of desired parameters (types of queries, data, performance indicators) and choose the optimal one for their needs. 
+            \item \textbf{Technology Researchers:}
+            This includes the researchers who can benefit by absorbing the knowledge and contributing to the rigorous research efforts to for the research community. The target research audience will be the communities, not limited to Semantic Web, Database, Information Retrieval, Big Data researchers, etc.
+        \end{itemize}
 
 
 %========================================THE BENCHMARK FRAMEWORK=================================================================
 \section{The Litmus Framework}\label{litmus_framework}
-    \subsection{Objectives}
-        \todoinline{Needs to formulated well, suggest changes} 
-        Why are we doing this? - To develop an Open, Extensible and Reusable cross domain platform for:
-        \begin{itemize}
-            \item Benchmarking data management solutions across a wide variety of categories
-            \item Exploring and studying a wide range of storage and indexing techniques and their correlation with different types of queries and data
-            \item Allowing easy integration and benchmarking of new third party data management solutions to an existing plethora of tools
-        \end{itemize}
+   % \subsection{Objectives}
+    %    \todoinline{Needs to formulated well, suggest changes} 
+     %   Why are we doing this? - To develop an Open, Extensible and Reusable cross domain platform for:
+     %  \begin{itemize}
+     %     \item Benchmarking data management solutions across a wide variety of categories
+     %    \item Exploring and studying a wide range of storage and indexing techniques and their correlation with different types of queries and data
+     %   \item Allowing easy integration and benchmarking of new third party data management solutions to an existing plethora of tools
+     %   \end{itemize}
         
 
     \subsection{Architecture Overview}
         The LITMUS architecture comprises of four major facets or components: Data Facet (F1), Query Facet (F2), System Facet (F3) and the Benchmarking core (F4). Figure \ref{fig:benchmark_arch} illustrates the abstract workflow of the LITMUS framework. We now explain the role of each facet. 
-        
-        \textbf{Data Facet \framebox[1.03\width]{F1}:} The Data Facet consists of two modules, \textit{(i)} Dataset(s) and \textit{(ii)} Data Integration Module. The \textit{dataset(s)} refers to the data on which the benchmark is to be performed. For instance, real datasets such as DBpedia\footnote{http://wiki.dbpedia.org/}, Wikidata\footnote{https://www.wikidata.org/}, etc or synthetic datasets such as the Berlin SPARQL Benchmarking (BSBM)~\cite{bizer2008benchmarking,bizer2009berlin}, Waterloo SPARQL Diversity Test Suite (WatDiv)~\cite{alucc2014diversified}, etc or hybrid datasets which comprise of both real and synthetic data. 
-        The \textit{Data Integration Module}, one of the key contributions of the framework, is responsible for (a) making the data available to the system in requested formats (such as .NT, CSV, SQL, JSON) by carrying out appropriate data conversion and mapping tasks, and (b) loading the desired format of data to the respective DMS's selected for the benchmark. 
-        
-        \textbf{Query Facet \framebox[1.03\width]{F2}:} The Query Facet consists of two modules. (i) Queryset(s), and (ii) The Query Conversion Module. The \textit{Queryset} refers to the Query input files. The input queries are in SPARQL. The \textit{Query Conversion Module} will also be one of the key components of the LITMUS framework addressing the language barrier (Challenge \textbf{C2}). This module is responsible for: (i) converting the input SPARQL queries to respective DMS's query language (for instance, SQL, CYPHER, CQL, etc). The conversion will be performed using a state-of-the-art algorithm/technique which involves an intermediate language representation form. Thus, the \textit{Query Conversion Module} module will allow a wide variety of SPARQL queries (such as path, star-shaped and snowflake queries) to be converted into a wide variety of query languages, ultimately solving the language barrier.
-        
-        \textbf{System Facet \framebox[1.03\width]{F3}:} The System Facet, like the previous facets, also consists of two key modules, (i) Systems and (ii) Systems Configuration and Integration module. The \textit{Systems} module  consititutes of the DMS selected for the benchmark. The \textit{ Systems Configuration and Integration} module is responsible for (i) providing easy integration via wrapper(s) or as a plugin of the DMS to the end user, (ii) Monitor and configure the the integrated DMS for the benchmark. On top of this, this module will make use \textit{dockers} for ensuring a fair allocation of resources and necessary isolation required for conducting realistic benchmarks. 
-        
-        \textbf{Benchmarking core \framebox[1.03\width]{F2}:} The Benchmarking core (aka LITMUS core) is the heart of the LITMUS framework, consisting of three modules (i) Controller and Tester, (ii) Profiler, and (iii) Analyser. The \textit{Controller and Tester} is responsible for executing the respective scripts for: loading the data and queries to their corresponding DMS's, creating and validating the specified system configurations, and finally executing the benchmark on the selected setting. The \textit{Profiler} is responsible for: (a) generation and loading of various profiles (stress loads, query variations, etc) for conducting the benchmark tests and (b) writing the benchmark results profile-wise to the files (disk).  \dots The \textit{Analyser} is responsible for the collection of the results of the benchmark from the \textit{Profiler} and generates the performance evaluation reports. It also carries out the correlation analysis between the aforementioned  parameters by the user. The final results (reports) are then presented to the end user in a suitable visualization format (such as plots, tables, charts etc)
-        \todoinline{Need to write and review the profiler}
-        
-        \begin{figure}[t]
+         
+        \begin{figure}[h]
             \centering
             %\includegraphics{}
             \includegraphics[scale=0.2]{images/benchmark_arch_latest_new}
-            \caption{Architecture of the proposed benchmarking framework.}
+            \caption{Overview of the LITMUS framework architecture.}
             \label{fig:benchmark_arch}
         \end{figure}
-    
+        
+        \textbf{Data Facet \framebox[1.1\width]{F1}:} The Data Facet consists of two modules, \textit{(i)} Dataset(s) and \textit{(ii)} Data Integration Module. The \textit{dataset(s)} refers to the data on which the benchmark is to be performed. For instance, real datasets such as DBpedia\footnote{http://wiki.dbpedia.org/}, Wikidata\footnote{https://www.wikidata.org/}, etc or synthetic datasets such as the Berlin SPARQL Benchmarking (BSBM)~\cite{bizer2008benchmarking,bizer2009berlin}, Waterloo SPARQL Diversity Test Suite (WatDiv)~\cite{alucc2014diversified}, etc or hybrid datasets which comprise of both real and synthetic data. 
+        The \textit{Data Integration Module}, one of the key contributions of the framework, is responsible for (a) making the data available to the system in requested formats (such as .NT, CSV, SQL, JSON) by carrying out appropriate data conversion and mapping tasks, and (b) loading the desired format of data to the respective DMS's selected for the benchmark. 
+        
+        \textbf{Query Facet \framebox[1.1\width]{F2}:} The Query Facet consists of two modules. (i) Queryset(s), and (ii) The Query Conversion Module. The \textit{Queryset} refers to the Query input files. The input queries are in SPARQL. The \textit{Query Conversion Module} will also be one of the key components of the LITMUS framework addressing the language barrier (Challenge \textbf{C2}). This module is responsible for: (i) converting the input SPARQL queries to respective DMS's query language (for instance, SQL, CYPHER, CQL, etc). The conversion will be performed using a state-of-the-art algorithm/technique which involves an intermediate language representation form. Thus, the \textit{Query Conversion Module} module will allow a wide variety of SPARQL queries (such as path, star-shaped and snowflake queries) to be converted into a wide variety of query languages, ultimately solving the language barrier.
+        
+        \textbf{System Facet \framebox[1.1\width]{F3}:} The System Facet, like the previous facets, also consists of two key modules, (i) Systems and (ii) Systems Configuration and Integration module. The \textit{Systems} module  consititutes of the DMS selected for the benchmark. The \textit{ Systems Configuration and Integration} module is responsible for (i) providing easy integration via wrapper(s) or as a plugin of the DMS to the end user, (ii) Monitor and configure the the integrated DMS for the benchmark. On top of this, this module will make use \textit{dockers} for ensuring a fair allocation of resources and necessary isolation required for conducting realistic benchmarks. 
+        
+        \textbf{Benchmarking core \framebox[1.1\width]{F4}:} The Benchmarking core (aka LITMUS core) is the heart of the LITMUS framework, consisting of three modules (i) Controller and Tester, (ii) Profiler, and (iii) Analyser. The \textit{Controller and Tester} is responsible for executing the respective scripts for: loading the data and queries to their corresponding DMS's, creating and validating the specified system configurations, and finally executing the benchmark on the selected setting. The \textit{Profiler} is responsible for: (a) generation and loading of various profiles (stress loads, query variations, etc) for conducting the benchmark tests and (b) writing the benchmark results profile-wise to the files (disk). The \textit{Analyser} is responsible for the collection of the results of the benchmark from the \textit{Profiler} and generates the performance evaluation reports. It also carries out the correlation analysis between the aforementioned  parameters by the user. The final results (reports) are then presented to the end user in a suitable visualization format (such as plots, tables, charts etc)
+        \todoinline{Need to write and review the Profiler}
+       
     \subsection{Challenges}
     \todoinline{pending}
         \begin{enumerate}
-            \item Challenge 1 \framebox[1.03\width]{C1}: Normalising the data
+            \item Challenge 1 \framebox[1.1\width]{C1}: Data conversion
             Define the problem, possibly with a simple diagram and/or a table of different data formats which are required by these tools.
-            \item Challenge 2 \framebox[1.03\width]{C2}: Converting the Queries
-            Define the problem of query conversion and why it is needed to be solved. Again with a block diagram from the framework and/or a table displaying the discrete needs of each tool in terms of query languages they use.
+            \item Challenge 2 \framebox[1.1\width]{C2}: Query Conversion
+            One of the wide research gaps is the language (querylanguage) barrier. This problem can be Define the problem of query conversion and why it is needed to be solved. Again with a block diagram from the framework and/or a table displaying the discrete needs of each tool in terms of query languages they use.
             Also raise the issue of lack of a standard/intermediate representation mechanism. Why it is needed so badly, now more than ever.
             also propose a solution approach in the block diagram (as mentioned above).
-            \item Challenge 3 \framebox[1.03\width]{C3}: Performance features/indicators: what features, metrics, indicators to consider for the eval apart from the ones that exist such precision recall, index, storage, graph algos, etc.
+            \item Challenge 3 \framebox[1.1\width]{C3}: Performance features/indicators: what features, metrics, indicators to consider for the eval apart from the ones that exist such precision recall, index, storage, graph algos, etc.
         \end{enumerate}
         
     
@@ -261,10 +253,10 @@ Advancements in the field of Linked data have led to an enormous outburst of str
 
 
 %========================================EVALUATION======================================
-\section{Evaluation parameters}
-    \todoiteminline{Harsh}{co-authors}{Since we mentioned that we plan to produce a study of a wide range of performance indicators in sec 3.4, I propose we can just leave this for now with a small summary table of metrics used these days. or we can just skip this section all at once.}
-    \subsection{Evaluation parameters}
-    System n VS m VS o VS p VS r VS s 
+%\section{Evaluation parameters}
+ %   \todoiteminline{Harsh}{co-authors}{Since we mentioned that we plan to produce a study of a wide range of performance indicators in sec 3.4, I propose we can just leave this for now with a small summary table of metrics used these days. or we can just skip this section all at once.}
+  %  \subsection{Evaluation parameters}
+   % System n VS m VS o VS p VS r VS s 
     
     
 %\section{Case study?, User scenairo?}
