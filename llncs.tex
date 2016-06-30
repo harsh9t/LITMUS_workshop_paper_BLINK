@@ -63,7 +63,7 @@
 %\title{Graph vs RDF stores: An Empirical Evaluation of NoSQL RDF Data Management Solutions}
 %\title{An Empirical Evaluation of NoSQL RDF Data Management Solutions}
 %\title{Benchmarking RDF Data Management Solutions}
-\title{LITMUS: An open extensible benchmarking platform for NoSQL RDF Data Management Solutions}
+\title{LITMUS: An Open Extensible Benchmarking Platform for RDF Data Management Solutions}
 
 
 \author{Harsh Thakkar, Mohnish Dubey, ... }
@@ -74,7 +74,7 @@
 
 \begin{abstract}
 
-Abstract will appear here. \textit{When it's time!}
+Advancements in the field of Linked data have led to an enormous outburst of structured data. To keep up with the pace of efficient consumption and management of the data at this rate, many data manage,emts solutions have been built for specific applications. pace Abstract will appear here.
 
 \end{abstract}
 
@@ -102,11 +102,26 @@ Abstract will appear here. \textit{When it's time!}
 
 %========================================RELATED WORK======================================
 \section{Related work and Motivation}\label{relwork}
-    \todoinline{Gezim: Please review it}
+     \todoiteminline{Gezim}{co-authors}{Please review it}
     Benchmarking is widely used for evaluating data stores, and benchmarks exist for a variety of levels of abstraction, from the data graphs, to the triple stores, even to complete enterprise systems.
-    The most popular model of relational databases have standard benchmark suites such as TPC~\cite{Nambiar2011} benchmark suite.
+    By understanding and describing the current state of the art in benchmarking; in particular, benchmarks for (a) relational databases, (b) graph databases, (c) RDF data stores, and (d) Linked Data integration approaches and instance matching techniques.
+    By doing this, we will identify shortcomings and limitations of existing systems in order to employ LITMUS by extending these benchmarks to deal with the challenges forces by new systems.
+    Thus, in addition to surveying existing work, we intend to focus mainly on the purpose and scope of the benchmarks.
+    
+    The most popular model of relational databases have standard benchmark suites such as TPC~\cite{Nambiar2011} benchmark dealing with transaction processing, querying performance, data maintenance and other operations for a relational database.
+    However, its general abstraction is not suitable for other data models, as they have been specifically made for relational databases.
+    
+    For benchmarking functions of graph databases, there are some existing techniques on their early stages (e.g HPC Scalable Graph Analysis Benchmark~\cite{Dominguez-Sal:2010:SGD:1927585.1927590}, Graph 500~\cite{murphy2010introducing}, XGDBench~\cite{conf/cloudcom/DayarathnaS12}, etc) dealing with graph suitability and graph analysis.
+    
+    
+    
+    
+    
+    
+    
+    
     However, the emerging field of Linked Data still lacks such support.
-    We felt if was necessary to define a new benchmark for Linked Data Systems.
+    We felt it was necessary to define a new benchmark for Linked Data Systems.
     First, most data stores do not have an interface which allow user to execute SPARQl queries against any kind of end data structure representation, or they only support a subset of operations.
     Toward, the complex queries of many existing SPARQL benchmarks were not applicable.
     Second, the use cases of Linked Data are often different than traditional database applications, so that narrow domain benchmarks may not match the intended usage of the system.
@@ -114,8 +129,8 @@ Abstract will appear here. \textit{When it's time!}
     
     Designing an accurate and scalability benchmark, and force its usage to gather accurate results, is non-trivial. LDBC council \cite{DBLP:journals/sigmod/AnglesBLF0ENMKT14}
     
-    
-    We review current state-of-the-art work done on Linked Data benchmarking and explain how our approach will enhances over them.
+  There is a lack of effort to benchmark and compare Data Management Solutions (DMS) from cross domains. There exist no such open, extensible and reusable framework exists to the best of our knowledge which allows to explore, analyse and play with a wide range of DMSs.
+  Our aim is to satisfy these criteria by developing a benchmark to serving systems, portable to diferend end data structure representation through our extensibility framework, scalable to large scale data sets, and employing any kind of operations on top of it.
 
 
     \begin{itemize}
@@ -130,17 +145,11 @@ Abstract will appear here. \textit{When it's time!}
     LDBC council work to be cited
     Gerbil to be cited
     BAT-framework ot be cited \\
-    
-   {\color{red} Motivation goes here. if any..} \\
-    Benchmarking refers to --- \\
-    \textbf{Issues to highlight:} \\Too much data, Too many DMSs. Which one to choose? where to compare? How to compare? Easy to use, Easy to maintain and transparent assessment.
-    Research Gaps and Opportunities: \\
-    There is a lack of effort to benchmark and compare Data Management Solutions (DMS) from cross domains. There exist no such open, extensible and reusable framework exists to the best of our knowledge which allows to explore, analyse and play with a wide range of DMSs.
-    
-    Our contribution:\\
-    needed here?  
 
 \section{Objectives and Outcomes}
+    \subsection{Focus of the LITMUS framework}
+    The LITMUS framework aims at bridging the gaps in adopting, deploying and scaling the consumption of Big Linked Data. LITMUS is being built with a dedication to simply the use, assessment and analysis of the performances of a wide spectrum of Linked Data management solutions for satisfying the end user's needs.  In particular, the LITMUS project will create: (i) A common ground for carrying out benchmarks for a plethora of cross domain DMS's (ii) Specific benchmarks for the selected DMS's (in the later phases), and  (iii) Reports and scientific studies on the correlation of a wide of factors (query typology, Indexing mechanism, etc) affecting the performances of the DMS's. The LITMUS framework will also, during its final phase, be able to serve as a recommendation medium for suggesting particular DMS's for the user specific setting or application based on predefined requirements. 
+    \todoproofread{Harsh}{all}{Review}
     \subsection{Research gaps to be filled by LITMUS}
     The artifacts produced by the research and development activity to be undertaken for the LITMUS project can be grouped in to two groups: \textit{(A1)} scientific studies/surveys and \textit{(A2)} software deliverables. 
     
@@ -161,12 +170,11 @@ Abstract will appear here. \textit{When it's time!}
 
 
     \subsection{Target audience}
-        \todoiteminlinedone{Harsh}{all}{Pending}
+        \todoiteminline{Harsh}{all}{Pending}
 
 
 %========================================THE BENCHMARK FRAMEWORK=================================================================
 \section{The Litmus Framework}\label{litmus_framework}
-The LITMUS architecture comprises of four major facets or components: Data Facet (F1), Query Facet (F1), System Facet (F1) and the LITMUS core. Figure \ref{benchmark_arch} illustrates the abstract workflow of the LITMUS framework.
     \subsection{Objectives}
         \todoinline{Needs to formulated well, suggest changes} 
         Why are we doing this? - To develop an Open, Extensible and Reusable cross domain platform for:
@@ -176,43 +184,24 @@ The LITMUS architecture comprises of four major facets or components: Data Facet
             \item Allowing easy integration and benchmarking of new third party data management solutions to an existing plethora of tools
         \end{itemize}
         
-        What we want to achieve, i.e. contributions and their importance \\
-        Where we want to take it in the next year, i.e. vision  \\
-        
-        % from hobbit
-        
-        The HOBBIT project aims at abolishing the barriers in the adoption and deployment of Big Linked Data. To this end, HOBBIT will provide open benchmarking reports that allow to assess the fitness of existing solutions for their purposes. These benchmarks will be based on data that reflects reality and measures industry relevant Key Performance Indicators (KPIs) with comparable results using standardized hardware.
-        
-        %from hobbit
-        In particular, the H2020 Hobbit EU project will create benchmarks for the following stages: 1. Generation and Acquisition: Benchmarks pertaining to the transformation of unstructured, semi-structured and structured data into RDF. 2. Analysis and Processing: Benchmarks pertaining to the use of Linked Data to perform complex tasks such as supervised machine learning. 3. Storage and Curation: Benchmarks pertaining to the storage, versioning and querying of RDF data stored in corresponding solutions. 4. Visualisation and Services: Application centric benchmarks pertaining to queries used by software solutions which rely on large amounts of Linked Data.
-
-    
-    %\subsection{Data}
-     %   Data can be anything from real world datasets like DBpedia[cite], Wikidata[cite], Freebase[cite], etc., to synthetic datasets such as the Berlin SPARQL Benchmark data[cite], Wat-Div data [cite], LUBM [cite], SP$^_{2}$Bench.. etc.. 
-        
-      %  \begin{itemize}
-       %     \item BSBM
-            \item WAT-DIV
-        %\end{itemize}
-    
-    %\subsection{Queries}
-     %   Type of queries:
-     %   \begin{itemize}
-     %       \item Keyword(s)
-     %       \item Linear
-     %       \item Star-shaped
-     %       \item Snow-flake
-     %   \end{itemize}
-        
-     %   Number of queries : $~20$ (total around 40 adding both datasets)
-    
 
     \subsection{Architecture Overview}
-        The description of the architecture goes here.. 
+        The LITMUS architecture comprises of four major facets or components: Data Facet (F1), Query Facet (F2), System Facet (F3) and the Benchmarking core (F4). Figure \ref{fig:benchmark_arch} illustrates the abstract workflow of the LITMUS framework. We now explain the role of each facet. 
+        
+        \textbf{Data Facet \framebox[1.03\width]{F1}:} The Data Facet consists of two modules, \textit{(i)} Dataset(s) and \textit{(ii)} Data Integration Module. The \textit{dataset(s)} refers to the data on which the benchmark is to be performed. For instance, real datasets such as DBpedia\footnote{http://wiki.dbpedia.org/}, Wikidata\footnote{https://www.wikidata.org/}, etc or synthetic datasets such as the Berlin SPARQL Benchmarking (BSBM)~\cite{bizer2008benchmarking,bizer2009berlin}, Waterloo SPARQL Diversity Test Suite (WatDiv)~\cite{alucc2014diversified}, etc or hybrid datasets which comprise of both real and synthetic data. 
+        The \textit{Data Integration Module}, one of the key contributions of the framework, is responsible for (a) making the data available to the system in requested formats (such as .NT, CSV, SQL, JSON) by carrying out appropriate data conversion and mapping tasks, and (b) loading the desired format of data to the respective DMS's selected for the benchmark. 
+        
+        \textbf{Query Facet \framebox[1.03\width]{F2}:} The Query Facet consists of two modules. (i) Queryset(s), and (ii) The Query Conversion Module. The \textit{Queryset} refers to the Query input files. The input queries are in SPARQL. The \textit{Query Conversion Module} will also be one of the key components of the LITMUS framework addressing the language barrier (Challenge \textbf{C2}). This module is responsible for: (i) converting the input SPARQL queries to respective DMS's query language (for instance, SQL, CYPHER, CQL, etc). The conversion will be performed using a state-of-the-art algorithm/technique which involves an intermediate language representation form. Thus, the \textit{Query Conversion Module} module will allow a wide variety of SPARQL queries (such as path, star-shaped and snowflake queries) to be converted into a wide variety of query languages, ultimately solving the language barrier.
+        
+        \textbf{System Facet \framebox[1.03\width]{F3}:} The System Facet, like the previous facets, also consists of two key modules, (i) Systems and (ii) Systems Configuration and Integration module. The \textit{Systems} module  consititutes of the DMS selected for the benchmark. The \textit{ Systems Configuration and Integration} module is responsible for (i) providing easy integration via wrapper(s) or as a plugin of the DMS to the end user, (ii) Monitor and configure the the integrated DMS for the benchmark. On top of this, this module will make use \textit{dockers} for ensuring a fair allocation of resources and necessary isolation required for conducting realistic benchmarks. 
+        
+        \textbf{Benchmarking core \framebox[1.03\width]{F2}:} The Benchmarking core (aka LITMUS core) is the heart of the LITMUS framework, consisting of three modules (i) Controller and Tester, (ii) Profiler, and (iii) Analyser. The \textit{Controller and Tester} is responsible for executing the respective scripts for: loading the data and queries to their corresponding DMS's, creating and validating the specified system configurations, and finally executing the benchmark on the selected setting. The \textit{Profiler} is responsible for: (a) generation and loading of various profiles (stress loads, query variations, etc) for conducting the benchmark tests and (b) writing the benchmark results profile-wise to the files (disk).  \dots The \textit{Analyser} is responsible for the collection of the results of the benchmark from the \textit{Profiler} and generates the performance evaluation reports. It also carries out the correlation analysis between the aforementioned  parameters by the user. The final results (reports) are then presented to the end user in a suitable visualization format (such as plots, tables, charts etc)
+        \todoinline{Need to write and review the profiler}
+        
         \begin{figure}[t]
             \centering
             %\includegraphics{}
-            \includegraphics[scale=0.2]{images/benchmark_arch_new}
+            \includegraphics[scale=0.2]{images/benchmark_arch_latest_new}
             \caption{Architecture of the proposed benchmarking framework.}
             \label{fig:benchmark_arch}
         \end{figure}
