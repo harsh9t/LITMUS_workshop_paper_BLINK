@@ -85,20 +85,20 @@ Advancements in the field of Linked data have led to an enormous outburst of str
 \end{abstract}
 
 \section{Introduction}\label{sec:Introduction}
-     
+    \todo[color=green,inline]{Jeremy: The introduction definitely needs to be re-written: (1) problem statement - what is the issue with current efforts; (2) better motivation - why is this important; (3) what are the challenges. The introduction is weak in this regard. Also, please let me know when it is done so that I can proof-read it once through} 
     \todoiteminline{Harsh}{co-authors}{This might need re-phrasing, feel free to do so}
-    
-    The current era stands as a witness to the enormous explosion of structured data on the Web referred to as Linked Data\footnote{http://lod-cloud.net/}. With such a rapid growth in the amount of data, managing this data has also become a challenging issue. Modern day organizations have become increasingly interested in searching for data management solutions, suited best for their needs, based on Linked Data. At the same time choosing the best data management solution has become a problem analogous to searching for a needle in a gigantic haystack. With limited domain expertise, information and non-stop expansion of data the need for a standardised framework to benchmark and analyse the existing diverse data management solutions has become more critical. 
+    \todoiteminline{Jeremy}{?}{The first few sentences say nothing substantial wrt Benchmarking. I would have rather start by motivating why benchmarking DMS is important, e.g there a number of DMS but there is no baseline on how to compare one against the other. The paper is not about creating a DMS, so we do not really need to say that structured data is expanding in a rapid manner etc etc... Anyway, would the rapid expansion of structure data merit new DMS? Don't think so. I would focus the first paragraph on the main motivation of the paper}
+    The current era stands as a witness to the enormous explosion of structured data on the Web referred to as Linked Data\footnote{http://lod-cloud.net/}. With such a rapid growth in the amount of data, managing this data has also become a challenging issue. Modern day organizations have become increasingly interested in searching for data management solutions, suited best for their needs, based on Linked Data. At the same time choosing the best data management solution has become a problem analogous to searching for a needle in a gigantic haystack\todo[color=green]{Jeremy: why is it so? are there a lot of DMS that it is difficult to choose which system to use for your use-case? As I said, I would def focus on why this benchmarking tool is needed. Is there some gap in the current state-of-the-art? E.g. they do not make results publicly available, or that benchmarking tools cannot be extendible with any other third party tool}. With limited domain expertise, information and non-stop expansion of data the need for a standardised framework to benchmark and analyse the existing diverse data management solutions has become more critical. 
     
     \todoinline{one more paragraph to be added here about some current activity, etc on benchmarking platforms}
-    Despite growing interest and use in both research communities and industries, current DMS benchmarks do not offer one widespread suite of benchmarks and no single unit of verification of the results for a whole systems. In order to fill the gaps (i) to help end user to choose the right system by showing the ranked results of the system's behaviors for the different parameter selection permutation, and (ii) the involvement of industry community to improve their systems by modeling a different challenges and pick a right pipeline for their needs. 
+    Despite growing interest and use in both research communities and industries, current DMS benchmarks do not offer one widespread\todo[color=green]{Jeremy: what do you mean by widespread?} suite of benchmarks and no single unit of verification of the results for a whole systems\todo[color=green]{Jeremy: to a reader who is a non-benchmarking expert like me, use something trivial than "single unit of verification"}. In order to fill the gaps\todo[color=green]{Jeremy: fill the gaps of what? who will fill the gap? I thought most (if not all) benchmarks fill these two gaps. This is not clear} (i) to help end user to choose the right system by showing the ranked results of the system's behaviors for the different parameter selection permutation, and (ii) the involvement of industry community to improve their systems by modeling a different challenges and pick a right pipeline for their needs. 
     
-    In this paper we present LITMUS, an open extensible solution towards benchmarking a wide variety of NoSQL data management solutions (DMS). LITMUS is focused to to support organizations/institutions which aspire to use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
-    LITMUS will provide realistic performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. The objectives of LITMUS are to:
+    In this paper we present LITMUS, an open extensible solution towards benchmarking a wide variety of NoSQL data management solutions (DMS). %LITMUS is focused to to support organizations/institutions which aspire to use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
+    LITMUS will provide realistic\todo[color=green]{Jeremy: What is realistic?} performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. The objectives of LITMUS are to:
      \begin{itemize}
         \item provide an open extensible framework for allowing easy integration and benchmarking of new DMS to an existing plethora of tools;
-       \item benchmark and compare Data Management Solutions (DMS) across a wide variety of categories;
-       \item explore and study a wide range of storage and indexing techniques used and their correlation with different types of queries and data on the performance of the DMS.
+       \item benchmark and compare Data Management Solutions (DMS) across a wide variety of categories\todo[color=green]{Jeremy: what are categories? maybe you need to introduce some keywords before?};
+       \item explore and study a wide range of storage and indexing techniques\todo[color=green]{Jeremy: will the system explore and study automatically, or will you do the evaluation and then provide the results as part of the system?} used and their correlation with different types of queries and data on the performance of the DMS.
       \end{itemize}
     
         This paper is organised as follows: We briefly present a survey on the existing benchmarking efforts involving relational databases, graph/RDF data management, Linked Data integration approaches and instance matching domains and motivation are presented in Section~\ref{relwork}. Then in Section~\ref{Objectives} we go throw light on the focus of LITMUS, the challenges to be addressed and the target communities which can benefit from LITMUS. We present the LITMUS framework and describe the components in brief in Section~\ref{litmus_framework}.  
@@ -108,31 +108,40 @@ Advancements in the field of Linked data have led to an enormous outburst of str
 
 %========================================RELATED WORK======================================
 \section{Related work}\label{relwork}
-
+\todoiteminline{Jeremy}{Gezim}{please move any relevant motivation in the introduction. leave this section for the state of the art}
     Benchmarking is widely used for evaluating data stores, and benchmarks exist for a variety of levels of abstraction, from the data graphs, to the triple stores, even to complete enterprise systems.
     By understanding and describing the current state of the art in benchmarking; in particular, benchmarks for (a) relational databases, (b) graph databases, (c) RDF data stores, and (d) Linked Data integration approaches and instance matching techniques.
     
-    By doing this, we identify shortcomings and limitations of existing systems in order to employ LITMUS by extending these benchmarks to deal with the challenges forces by new systems.
+    \todoiteminline{Jeremy}{Gezim}{here we should use the present tense (you can use the past tense - matter of preference). eg. "We identify shortcomings" not "We will indentify shortcomings"}
+    By doing this, we identify shortcomings and limitations of existing systems. \todo[color=green]{Jeremy: By identifying shortcomings in the state-of-the-art, the reader would expect that the solution (LITMUS) address these. In fact, in your related work you should say how we plan to tackle these shortcomings (if at all possible)}
+    %in order to employ LITMUS by extending these benchmarks to deal with the challenges forces by new systems.
     Thus, in addition to surveying existing work, we intend to focus mainly on the purpose and scope of the benchmarks.
     
-    The most popular model of relational databases have standard benchmark suites such as TPC~\cite{Nambiar2011} benchmark dealing with transaction processing, querying performance, data maintenance and other operations for a relational database.
-    
+    %The most popular model of relational databases have standard benchmark suites such as TPC~\cite{Nambiar2011} benchmark dealing with transaction processing, querying performance, data maintenance and other operations for a relational database.
+    \todoiteminline{Jeremy}{Gezim}{How about creating different subsections for different type of benchmarking, eg. one for relational databases, one for graph databases, one for triple stores, etc...?}
     The TPC~\cite{Nambiar2011} benchmark suit deals with transaction processing, querying performance, data maintenance and other operations for a relational database.
-    However, its general abstraction is not suitable for other data models, as they have been specifically made for relational databases.
+    However, its general abstraction\todo[color=green]{Jeremy: This is a bit confusing, if the TPC is abstract, then why is it not suitable for other data models?} is not suitable for other data models, as they have been specifically made for relational databases.
     
+    \todoiteminline{Jeremy}{Gezim}{This is a bit shallow. Can you please expand more? Why and how do they fail on defining standards? How will the proposed tool address this?}
     For benchmarking functions of graph databases, there are some existing techniques on their early stages (such as HPC Scalable Graph Analysis Benchmark~\cite{Dominguez-Sal:2010:SGD:1927585.1927590}, Graph 500~\cite{murphy2010introducing}, XGDBench~\cite{conf/cloudcom/DayarathnaS12}) dealing with graph suitability and graph analysis and they fail on defining standards for graph modeling and query languages.
     
-    Existing RDF benchmarks have several limitations, mainly because they do not provide enough metadata for representing datasets, and support only some type of queries.
+    Existing RDF benchmarks have several limitations, mainly because they do not provide enough metadata for representing datasets, and support only some type of queries.\todo[color=green]{Jeremy: not sure what you mean by "not providing enough metadata". Why is this important for benchmarking? Isn't the aim of this tool to benchmark DMS, not RDF datasets no?}
     In this context there is some work done on data integration benchmarks, mainly on entity annotation where GERBIL~\cite{Usbeck:2015:GGE:2736277.2741626} offers an easy-to-use platform for the agile comparison of annotators using multiple datasets and uniform measuring approaches.
     
     Recently, the ongoing work at LDBC council \cite{DBLP:journals/sigmod/AnglesBLF0ENMKT14} try to combine benchmarks for graph and RDF data management systems.
     
-    However, we felt it was necessary to define a new benchmark for Linked Data Systems. First, most data stores do not have an interface which allow user to execute SPARQL queries against any kind of end data structure representation, or they only support a subset of operations.
-    Toward, the complex queries of many existing SPARQL benchmarks were not applicable. Secondly, the use cases of Linked Data are often different than traditional database applications, so that narrow domain benchmarks may not match the intended usage of the system.
+    \todoiteminline{Jeremy}{Gezim}{Please rephrase the whole paragraph. I cannot really understand what was written here}
+    However, we felt it was necessary to define a new benchmark for Linked Data Systems\todo[color=green]{Jeremy: rephrase}.
+    First, most data stores\todo[color=green]{Jeremy: which? the state-of-the-art? Please cite} do not have an interface which allow user to execute SPARQL queries against any kind of end data structure representation, or they only support a subset of operations.
+    Toward, the complex queries of many existing SPARQL benchmarks were not applicable\todo[color=green]{Jeremy: eh? rephrase}.
+    Secondly, the use cases of Linked Data are often different than traditional database applications, so that narrow domain benchmarks may not match the intended usage of the system.
     Furthermore, our goal is to develop a benchmarking framework that could be used to explore the performance space of different systems, rather than to measure a single performance number representing a particular application.
     
+    \todoiteminline{Jeremy}{Gezim/Harsh}{This seems to be a challenge, move to intro}
     Designing an accurate and scalability benchmark, and force its usage to gather accurate results, is non-trivial. 
     
+    \todoiteminline{Jeremy}{Gezim/Harsh}{Either move to introdution, or rephrase in a way that you position your work against the state-of-the-art}
+
     There is a lack of effort to benchmark and compare Data Management Solutions (DMS) from cross domains. There exist no such open, extensible and reusable framework exists to the best of our knowledge which allows to explore, analyse and play with a wide range of DMSs.
     Our aim is to satisfy these criteria by developing a benchmark to serving systems, portable to different end data structure representation through our extensibility framework, scalable to large scale data sets, and employing any kind of operations on top of it.
     
