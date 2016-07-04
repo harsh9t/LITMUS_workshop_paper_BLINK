@@ -82,6 +82,8 @@
 Advancements in the field of Linked data have led to an enormous outburst of structured data. To keep up with the pace of efficient consumption and management of the data at this rate, many Data Management Solutions (DMS) have been developed for specific task and applications. \dots 
 \todoiteminline{Harsh}{co-authors}{Please contribute in the abstract writing}
 
+\todoiteminline{Jeremy}{all}{make it clear in the abstract that this is a position paper}
+
 \end{abstract}
 
 \section{Introduction}\label{sec:Introduction}
@@ -111,8 +113,9 @@ Advancements in the field of Linked data have led to an enormous outburst of str
 \todoiteminline{Jeremy}{Gezim}{please move any relevant motivation in the introduction. leave this section for the state of the art}
     Benchmarking is widely used for evaluating data stores, and benchmarks exist for a variety of levels of abstraction, from the data graphs, to the triple stores, even to complete enterprise systems.
     By understanding and describing the current state of the art in benchmarking; in particular, benchmarks for (a) relational databases, (b) graph databases, (c) RDF data stores, and (d) Linked Data integration approaches and instance matching techniques.
+    \todoiteminline{Jeremy}{Gezim}{What do you mean by "Linked Data integration approaches and instance matching techniques?" Why are they relevant to be mentioned in the SOTA section for this paper? This is really really confusing}
     
-    \todoiteminline{Jeremy}{Gezim}{here we should use the present tense (you can use the past tense - matter of preference). eg. "We identify shortcomings" not "We will indentify shortcomings"}
+    \todoiteminline{Jeremy}{Gezim}{here we should use the present tense (you can use the past tense - matter of preference). eg. "We identify shortcomings" not "We will indentify shortcomings".}
     By doing this, we identify shortcomings and limitations of existing systems. \todo[color=green]{Jeremy: By identifying shortcomings in the state-of-the-art, the reader would expect that the solution (LITMUS) address these. In fact, in your related work you should say how we plan to tackle these shortcomings (if at all possible)}
     %in order to employ LITMUS by extending these benchmarks to deal with the challenges forces by new systems.
     Thus, in addition to surveying existing work, we intend to focus mainly on the purpose and scope of the benchmarks.
@@ -162,23 +165,29 @@ Advancements in the field of Linked data have led to an enormous outburst of str
 \section{Objectives, Challenges and Outcomes}\label{Objectives}
 
     \subsection{Focus of the LITMUS framework}
-    The LITMUS framework aims at bridging the gaps in adopting, deploying and scaling the consumption of Big Linked Data. LITMUS is being built with a dedication to simplify the use, assessment and analysis of the performances of a wide spectrum of Linked Data management solutions for satisfying the end user's needs.  In particular, the LITMUS project will create: (i) A common ground for carrying out benchmarks for a plethora of cross domain DMS's (ii) Specific benchmarks for the selected DMS's (in the later phases), and  (iii) Reports and scientific studies on the correlation of a wide of factors (query typology, Indexing data structures used~\cite{shekarpour2016question}, etc) affecting the performances of the DMS's. The LITMUS framework will also, during its final phase, be able to serve as a recommendation medium for suggesting particular DMS's for the user specific setting or application based on predefined requirements. 
+    The LITMUS framework aims at bridging the gaps in adopting, deploying and scaling the consumption of Big Linked Data\todo[color=green]{Jeremy: eh? not really! consumption of Big Linked Data? Ok so first, remove big - we don't care if the data is big or not. We want to have a benchmarking platform for any volume of data. I don't agree with the consumption keyword. We can use DMS not just for consumption}. LITMUS is being built with a dedication\todo[color=green,inline]{Jeremy: LOL. No here you don't say "LITMUS is being built". It is better to state the aims of the framework, and describe the general architecture. Or else start with the challenges and then go to the general architecture. Do not write things like "is being built" because reviewers would forget that this is a position paper and this would give them an argument on why this should be rejected} to simplify the use, assessment and analysis of the performances of a wide spectrum of Linked Data management solutions for satisfying the end user's needs.  
+    In particular, the LITMUS project will create: (i) A common ground for carrying out benchmarks for a plethora of cross domain DMS's\todo[color=green]{Jeremy: so you have to be careful, because before you said "Big Linked Data" and now cross-domain. be consistent. I am assuming that by cross-domain you mean that you can benchmark any DMS for any type of data, not just linked data.}  (ii) Specific benchmarks for the selected DMS's (in the later phases)\todo[color=green]{Jeremy: why is this an important aim? this seems to be very very specific to the task at hand. here please just focus on the aims of the framework} , and  (iii) Reports and scientific studies~\todo[color=green,inline]{Jeremy: how is a scientific study important for the development of the tool. If you want to mention these last two points, I suggest that you create two parts: (1) the main aims of the tool: i.e. (i) enabling benchmarking of cross-domain DMS, (ii) providing machine-readable interopearble reports, (iii) create a uniform and replicable way of comparing different DMSs etc...; and (2) the objectives (the measureable outcome) ie. (i) scientific studies on different aspects of DMS, (ii) up-to-date reports for easy comparison etc...} on the correlation of a wide of factors (query typology, Indexing data structures used~\cite{shekarpour2016question}, etc) affecting the performances of the DMS's. The LITMUS framework will also, during its final phase\todo[color=green]{Jeremy: do not talk about phases, but i suggest that after the challenges you describe the general architecture. In any case this recommendation can be part of the general architecture already, but we do not need to tell people when we will develop this}, be able to serve as a recommendation medium for suggesting particular DMS's for the user specific setting or application based on predefined requirements. 
     
     \subsection{Challenges to be addressed}
     In order to develop such an open extensible benchmarking platform (LITMUS), there are three key challenges which have to be addressed. We describe them in brief as follows:
         \begin{enumerate}
-            \item \framebox[1.1\width]{\textbf{C1}}\textbf{ Data conversion}: This challenge demands a generic data conversion mechanism. This will allow the user to convert the input data to a format interpretable by the corresponding DMS (e.g. RDF to CSV (Comma Separated Value), JSON (JavaScript Object Notation),  and SQL (Structured Query Language).
+            \item             
+            \todo[color=green,inline]{Jeremy: why is this a challenge? this is addressed in a number of works including: \url{http://www.semantic-web-journal.net/content/exconquer-lowering-barriers-rdf-and-linked-data-re-use-0}}
+            \framebox[1.1\width]{\textbf{C1}}\textbf{ Data conversion}: This challenge demands a generic data conversion mechanism. This will allow the user to convert the input data to a format interpretable by the corresponding DMS (e.g. RDF to CSV (Comma Separated Value), JSON (JavaScript Object Notation),  and SQL (Structured Query Language).
             \item \framebox[1.1\width]{\textbf{C2}} \textbf{Query Conversion:} 
             One of the substantial research gap is the language (query language) barrier. Since all query languages are different in a their structure and expressivity, and the DMS have different query languages, there is a need to develop an intermediate mechanism to convert or express the logic of one query (from one format \textit{say} SPARQL) to the other respective language (\textit{say} CYPHER, SQL, CQL, etc). For instance, path queries (in SPARQL) cannot be expressed in an equivalent manner in SQL. This requires an exhaustive study of the expressivity of query languages and a formal analysis of how they can be mapped to other languages without altering the meaning of the query. This study will provide us with deep insights about the functionality of various query languages, their strengths and limitations.
             also propose a solution approach in the block diagram (as mentioned above).
             \item \framebox[1.1\width]{\textbf{C3}} \textbf{Performance measures/indicators:} 
             The performance of a DMS can be assessed on a wide variety of metrics/features/indicators. It is necessary in order to conduct a correlational analysis of the impact of the diversity in queries and data on storage and indexing efficiency of the DMS. Apart from the traditional performance measures such as precision, recall, index size, storage size, number of triples, query response time, etc there is a need to explore more complex indicators of performance to successfully determine their correlation with the type of data and queries.
         \end{enumerate}
+        \todo[color=green,inline]{Jeremy: I am missing one major challenge - how will your framework enable "cross-domain" DMS benchmarking? How will the framework facilitate the benchmarking between a graph DMS and relational DMS? I would list one major challenge (i.e. enabling the cross-domain benchmarking in a uniform and replicable way, and then the sub challenges. Also make sure that if the challenge is tackled in a way in some other literature, please mention it here and say why it is still a challenge in this case.}
+
     
     \subsection{Research gaps to be filled by LITMUS}
+    \todo[color=green,inline]{Jeremy: I would expect this kind of statement in a project deliverable and not in a research paper (even though it is a position paper). You have to sell this as a research paper. Therefore, as I said in my previous comment, I would re-structure this section as aims (software/framework) and objectives (the rest)}
     The artifacts produced by the research and development activity to be undertaken for the LITMUS project can be grouped into two groups: \textit{(A1)} scientific studies/surveys and \textit{(A2)} software deliverables. 
     
-    \framebox[1.1\width]{\textbf{A1}}\textit{ Scientific studies/surveys such as:} 
+    \framebox[1.1\width]{\textbf{A1}}\textit{ Scientific studies/surveys such as\todo[color=green]{In this case, if possible, avoid "such as" and be to the point}:} 
         \begin{itemize}
             \item Survey of the query language expressivity and features for overcoming the language barrier
             \item A study of a wide range of indexing and storage techniques used for fast and efficient retrieval of structured data
@@ -194,6 +203,7 @@ Advancements in the field of Linked data have led to an enormous outburst of str
                 \todoproofread{Harsh}{all}{and Review too}
 
     \subsection{Target audience}
+    \todo[color=green,inline]{Jeremy: again, not a project deliverable. you can skip this. Also, be consistent - you say that the framework is a "cross-domain", yet you still mention "consumption of Big Linked Data". Decide, if its cross-domain, or related to just Linked Data. I disagree with this (esp Big Linked Data)}
         \begin{itemize}
             \item \textbf{Technology Vendors:}
             One of the profiteers from this work will be the Industrial/Commercial fraternity (such as system and data analysts, system developers, system architects) who thrives towards developing advanced DMS for an efficient consumption of Big Linked Data.
@@ -238,6 +248,7 @@ Advancements in the field of Linked data have led to an enormous outburst of str
         \textbf{Benchmarking core \framebox[1.1\width]{F4}:} The Benchmarking core (aka LITMUS core) is the heart of the LITMUS framework, consisting of three modules (i) Controller and Tester, (ii) Profiler, and (iii) Analyser. The \textit{Controller and Tester} is responsible for executing the respective scripts for: loading the data and queries to their corresponding DMS's, creating and validating the specified system configurations, and finally executing the benchmark on the selected setting. The \textit{Profiler} is responsible for: (a) generation and loading of various profiles (stress loads, query variations, etc) for conducting the benchmark tests and (b) writing the benchmark results profile-wise to the files (disk). The \textit{Analyser} is responsible for the collection of the results of the benchmark from the \textit{Profiler} and generates the performance evaluation reports. It also carries out the correlation analysis between the aforementioned  parameters by the user. The final results (reports) are then presented to the end user in a suitable visualization format (such as plots, tables, charts etc)
         \todoproofread{Harsh}{all}{and Review too}
     
+    \todo[color=green,inline]{Jeremy: conclusions?}
     
 %\section{NoSQL Data management systems}
 %\todoiteminline{Harsh}{all}{I propose we merge this in the motivation, making it an independent section rather than a subsection. We have to focus on why we are proposing such a framework. Mentioning these diverse systems will only strengthen our claims}
