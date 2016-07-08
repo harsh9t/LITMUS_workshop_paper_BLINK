@@ -3,6 +3,7 @@
 \usepackage{color}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{dirtytalk}
 \usepackage[utf8]{inputenc}
 \hypersetup{
     colorlinks=true,
@@ -101,14 +102,21 @@ Advancements in the field of Linked data have led to an enormous outburst of str
     
     
     In this paper we present LITMUS, an open extensible solution towards benchmarking a wide variety of NoSQL Data Management Solutions (DMS). LITMUS is focused to to support organizations/institutions which aspire to use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
-    LITMUS will provide realistic performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. The objectives of LITMUS are to:
-     \begin{itemize}[nosep]
-        \item provide a common transparent platform to benchmark, compare and analyse cross domain Data Management Solutions (DMS) wrt to a wide variety of data and queries;       
-        \item serve as an open extensible framework for allowing easy replication, integration and evaluation of existing benchmarks for an existing plethora of tools;
-        \item explore and study a wide range of storage and indexing techniques used by existing DMS and their correlation with a wide spectrum of performance indicators
-      \end{itemize}
+    LITMUS will provide realistic performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. To put the reader in to the context of this work, we present the following \textbf{user scenario}: 
     
-        This paper is organised as follows: We briefly present a survey on the existing benchmarking efforts and their shortcomings in Section~\ref{relwork}. Then in Section~\ref{Objectives} we go throw light on the focus of LITMUS, the challenges to be addressed and the target communities which can benefit from LITMUS. We present the LITMUS framework and describe the components in brief in Section~\ref{litmus_framework}.  
+    \say{Harsh (say) works in a research project called WDAqua\footnote{WDAqua ITN - wdaqua.informatik.uni-bonn.de}. WDAqua aims towards building a data-driven question answering by using web data (which is available in various formats e.g. RDF, CSV, SQL, XML, etc). Harsh is responsible for ensuring efficient data management (storage and retrieval) for this project. There is an ocean of data management tools, each deliberately tailored for handling specific format of data, which use a wide variety of indexing, storage and query representation mechanisms. \textit{Harsh wants wants to assess the performance (benchmark) of these DMS against each other (for a varying degree of factors such as the query typology, indexing speed, index size, query response time, etc) and choose the best solution for his needs}. However, benchmarking is a task which demands tedious manual efforts, owing to the diversity in the nature of these DMS and the granularity of the repetitiveness involved within. 
+    %The major reasons for this diversity is that each of these DMSs represent queries in a different language, employ a spectrum of indexing and storage mechanisms, etc.  
+    \textit{Harsh wants to automatise the whole benchmarking process of these cross domain DMSs, allowing easy integration, evaluation on custom loads, and fast analysis of the evaluation results}. He would also \textit{expect the framework to be flexible to integrate new DMSs to the plethora of existing systems and benchmark them against a baseline}. The answer to Harsh's questions is \textbf{LITMUS}. LITMUS is an open extensible platform for benchmarking cross-domain DMSs. LITMUS, will not only satisfy Harsh’s need for automatising the tedious benchmarking process, but also offer: \textit{\textbf{(1)}} an efficient way for replicating existing benchmarks (such as BSBM\cite{bizer2009berlin}, WAT-DIV\cite{alucc2014diversified}, etc), \textit{\textbf{(2)}} a wide set of performance evaluation measures/indicators tailored specifically keeping in mind the DMSs being benchmarked, and \textit{\textbf{(3)}} visualising the performance comparison of the DMSs on various intrinsic factors via custom charts, graphs and tabular data allowing easier and faster insight.}
+    \todoproofread{Harsh}{Maria}{}
+    
+    %The objectives of LITMUS are to:\todo[color=green]{Harsh@all: Do we need the objectives now? after having presented the user scenario}
+     %\begin{itemize}[nosep]
+      %  \item provide a open extensible platform to benchmark, compare and analyse cross domain DMSs with respect to a wide variety of data and queries;       
+       % \item to automatise the benchmarking phenomenon allowing easy replication, integration and evaluation of existing third party benchmarks to an existing plethora of tools;
+    %    \item explore and study a wide range of storage and indexing techniques used by existing DMS and their correlation with a wide spectrum of performance indicators
+     % \end{itemize}
+    
+    The rest of this paper is organised as follows: We briefly present a survey on the existing benchmarking efforts and their shortcomings in Section~\ref{relwork}. Then in Section~\ref{Objectives} we go throw light on the focus of LITMUS, the challenges to be addressed and the target communities which can benefit from LITMUS. We present the LITMUS framework and describe the components in brief in Section~\ref{litmus_framework}.  
 
 
 
@@ -231,7 +239,7 @@ Advancements in the field of Linked data have led to an enormous outburst of str
             \label{fig:benchmark_arch}
         \end{figure}
         
-        \textbf{Data Facet \framebox[1.1\width]{F1}:} The Data Facet consists of two modules, \textit{(i)} Dataset(s) and \textit{(ii)} Data Integration Module. The \textit{dataset(s)} are the datasets chosen for benchmarking. These may be, real datasets such as DBpedia~\cite{auer2007dbpedia}, Wikidata~\cite{vrandevcic2014wikidata}, etc or synthetic datasets such as the Berlin SPARQL Benchmarking (BSBM)~\cite{bizer2008benchmarking,bizer2009berlin}, Waterloo SPARQL Diversity Test Suite (WatDiv)~\cite{alucc2014diversified}, etc or hybrid datasets which comprise of both real and synthetic data. 
+        \textbf{Data Facet \framebox[1.1\width]{F1}:} The Data Facet consists of two modules, \textit{(i)} Dataset(s) and \textit{(ii)} Data Integration Module. The \textit{dataset(s)} are the datasets chosen for benchmarking. These may be, real datasets such as DBpedia\footnote{http://wiki.dbpedia.org/}, Wikidata\footnote{https://www.wikidata.org}, etc or synthetic datasets such as the Berlin SPARQL Benchmarking (BSBM)~\cite{bizer2008benchmarking,bizer2009berlin}, Waterloo SPARQL Diversity Test Suite (WatDiv)~\cite{alucc2014diversified}, etc or hybrid datasets which comprise of both real and synthetic data. 
         The \textit{Data Integration Module}, one of the key contributions of the framework, is responsible for (a) making the data available to the system in requested formats (such as .NT, CSV, SQL, JSON) by carrying out appropriate data conversion and mapping tasks (i.e. Challenge \textbf{C1}), and (b) loading the desired format of data to the respective DMSs selected for the benchmark. 
         
         \textbf{Query Facet \framebox[1.1\width]{F2}:} The Query Facet consists of two modules. (i) Queryset(s), and (ii) The Query Conversion Module. The \textit{Queryset} refers to the set of query input files. The input queries are in SPARQL. The \textit{Query Conversion Module} will also be one of the key components of the LITMUS framework addressing the language barrier (Challenge \textbf{C2}). This module is responsible for: (i) converting the input SPARQL queries to respective DMSs query language (for instance, SQL, CYPHER, CQL, etc). The conversion will be performed using a state-of-the-art algorithm/technique which involves an intermediate language representation form. Thus, the \textit{Query Conversion Module} module will allow a wide variety of SPARQL queries (such as path, star-shaped and snowflake queries) to be converted into a wide variety of query languages, ultimately solving the language barrier.
