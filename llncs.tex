@@ -83,7 +83,9 @@
 
 \begin{abstract}
 
-Advancements in the field of Linked data have led to an enormous outburst of structured data. To keep up with the pace of efficient consumption and management of the data at this rate, many Data Management Solutions (DMS) have been developed for specific task and applications. In this position paper, we present LITMUS,  \dots 
+Developments in the context of Open, Big and Linked Data have led to an enormous growth of structured data. 
+To keep up with the pace of efficient consumption and management of the data at this rate, many Data Management Solutions (DMS) have been developed for specific task and applications.
+In this position paper, we present LITMUS,  \dots 
 \todoiteminline{Harsh}{all}{Please contribute in the abstract writing}
 
 \end{abstract}
@@ -92,17 +94,26 @@ Advancements in the field of Linked data have led to an enormous outburst of str
      
     \todoiteminline{Harsh}{all}{This needs re-phrasing, please contribute for writing this}
     
-    The current era stands as a witness to the enormous explosion of structured data on the Web referred to as Linked Data\footnote{http://lod-cloud.net/}. With such a rapid growth in the amount of data, managing this data has also become a challenging issue. Modern day organizations have become increasingly interested in searching for data management solutions, suited best for their needs, based on Linked Data. Choosing the best data management solution has become a problem analogous to searching for a needle in a gigantic haystack. With limited domain expertise and non-stop expansion of data the need for a standardised framework to benchmark and analyse the existing diverse data management solutions.
-    
-    Despite growing interest and use in both research communities and industries, current DMS benchmark creators do not offer a common cross domain suite for creating task specific benchmarks and no single baseline to compare one against the other. Moreover, re-producing or replicating benchmarks, created by others, is a non-trivial problem owing to reasons such as, non-standardised setup configurations, lack of publicly available resources (such as scripts, packages, etc) and lack of transparent evaluation policies. 
+Currently, we observe an enormous growth of structured data being made available on the Web as Open or Linked Data\footnote{http://lod-cloud.net/} as well as Big Data within organizations. 
+With such a rapid growth in the amount of data, managing this data has also become a challenging issue. 
+Modern day organizations face increasingly the need to search for data management tools, suited best for specific tasks. 
+Choosing the best data management tool however is challenging and cumbersome due to the limited comparability and compatibility. 
+With limited domain expertise and non-stop expansion of data the need for a standardised framework to benchmark and analyse the existing diverse data management landscape is of paramount importance.
+
+Despite the growing interest and use in both research and industrial communities, current DMS benchmark creators do not offer a common cross domain suite for creating task specific benchmarks and there is no single baseline to compare one against the other. 
+Moreover, re-producing or replicating benchmarks, created by others, is a non-trivial problem owing to reasons such as, non-standardised setup configurations, lack of publicly available resources (such as scripts, packages, etc) and lack of transparent evaluation policies. 
     %due to a variety of reasons including (i) unclear setup configuration, (ii) non-standard . as the unit of verification of the results for a whole systems. 
     %In order to fill the gaps (i) to help end user to choose the right system by showing the ranked results of the system's behaviors for the different parameter selection permutation, and (ii) the involvement of industry community to improve their systems by modeling a different challenges and pick a right pipeline for their needs.
     
-    There have been many research efforts in the direction of benchmarking a range of DMS, including some which have also considered evaluating cross domain DMS {cite graphium, pandora}, but only to a limited scope. \todo[color=green]{Harsh: working on this, Need to add more information here..}
+There have been many research efforts in the direction of benchmarking a range of DMS, including some which have also considered evaluating cross domain DMS {cite graphium, pandora}, but only to a limited scope. \todo[color=green]{Harsh: working on this, Need to add more information here..}
     
     
-    In this paper we present LITMUS, an open extensible solution towards benchmarking a wide variety of NoSQL Data Management Solutions (DMS). LITMUS is focused to to support organizations/institutions which aspire to use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
-    LITMUS will provide realistic performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. To put the reader in to the context of this work, we present the following \textbf{user scenario}: 
+In this paper we present LITMUS, an open extensible approach for benchmarking a wide variety of NoSQL Data Management Solutions (DMS). 
+LITMUS aims to support organizations which aspire to use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
+LITMUS will provide realistic performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. 
+\todoproofread{Sören}{Harsh}{Add more details in 2-3 sentences about the LITMUS approach}
+
+To put the reader in to the context of this work, we present the following \textbf{user scenario}: 
     
     \say{Harsh (say) works in a research project called WDAqua\footnote{WDAqua ITN - wdaqua.informatik.uni-bonn.de}. WDAqua aims towards building a data-driven question answering by using web data (which is available in various formats e.g. RDF, CSV, SQL, XML, etc). Harsh is responsible for ensuring efficient data management (storage and retrieval) for this project. There is an ocean of data management tools, each deliberately tailored for handling specific format of data, which use a wide variety of indexing, storage and query representation mechanisms. \textit{Harsh wants wants to assess the performance (benchmark) of these DMS against each other (for a varying degree of factors such as the query typology, indexing speed, index size, query response time, etc) and choose the best solution for his needs}. However, benchmarking is a task which demands tedious manual efforts, owing to the diversity in the nature of these DMS and the granularity of the repetitiveness involved within. 
     %The major reasons for this diversity is that each of these DMSs represent queries in a different language, employ a spectrum of indexing and storage mechanisms, etc.  
@@ -116,19 +127,21 @@ Advancements in the field of Linked data have led to an enormous outburst of str
     %    \item explore and study a wide range of storage and indexing techniques used by existing DMS and their correlation with a wide spectrum of performance indicators
      % \end{itemize}
     
-    The rest of this paper is organised as follows: We briefly present a survey on the existing benchmarking efforts and their shortcomings in Section~\ref{relwork}. Then in Section~\ref{Objectives} we go throw light on the focus of LITMUS, the challenges to be addressed and the target communities which can benefit from LITMUS. We present the LITMUS framework and describe the components in brief in Section~\ref{litmus_framework}.  
-
+The remainder of this article is organised as follows: 
+We briefly present a survey of existing benchmarking efforts and their shortcomings in Section~\ref{relwork}. 
+Then in Section~\ref{Objectives}, we shed light on the focus of LITMUS, the challenges to be addressed and the target communities which can benefit from LITMUS. 
+We present the LITMUS framework and describe the components in brief in Section~\ref{litmus_framework}.  
 
 
 
 %========================================RELATED WORK======================================
 \section{Related work}\label{relwork}
 
-    Benchmarking is widely used for evaluating data stores. Benchmarks exist for a variety of levels of abstraction from simple data models to graphs and triple stores or even entire enterprise systems.
-    We describe the current state of the art in benchmarking, in particular benchmarks for (a) Relational databases, (b) Graph databases, (c) RDF stores, (d) Key-Value stores, (e) Wide Column stores and a few (f) Cross domain benchmarking efforts.
-    
-    By doing this, we identify shortcomings and limitations of existing systems in order to employ LITMUS by extending these benchmarks to deal with the challenges forced by new systems.
-    In addition to surveying existing work, we intend to focus mainly on the purpose and scope of the benchmarks.
+Benchmarking is widely used for evaluating data stores. 
+Benchmarks exist for a variety of levels of abstraction from simple data models to graphs and triple stores or even entire enterprise systems.
+We describe the current state of the art in benchmarking, in particular benchmarks for (a) Relational databases, (b) Graph databases, (c) RDF stores, (d) Key-Value stores, (e) Wide Column stores and (f) Cross domain benchmarking efforts.
+We identify shortcomings and limitations of existing systems in order to employ LITMUS by extending these benchmarks to deal with the challenges forced by new systems.
+In addition to surveying existing work, we intend to focus mainly on the purpose and scope of the benchmarks.
     
     %Relational databases have standard benchmark suites such as TPC~\cite{Nambiar2011} for dealing with transaction processing, querying performance, data maintenance and other operations for a relational database.
     %The TPC~\cite{Nambiar2011} benchmark suit deals with transaction processing, querying performance, data maintenance and other operations for a relational database.
