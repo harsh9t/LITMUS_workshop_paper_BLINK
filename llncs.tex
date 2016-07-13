@@ -68,10 +68,10 @@
 \title{LITMUS: An Open Extensible Framework for Benchmarking RDF Data Management Solutions}
 
 
-\author{Harsh Thakkar\inst{1}, Mohnish Dubey\inst{1}, Gezim Sejdiu\inst{1}, Axel-Cyrille Ngonga Ngomo\inst{2}, Jens Lehmann\inst{1,3}, S\"{o}ren Auer\inst{1,3}\dots}
+\author{Harsh Thakkar\inst{1}, Mohnish Dubey\inst{1}, Gezim Sejdiu\inst{1}, Axel-Cyrille Ngonga Ngomo\inst{2}, Jens Lehmann\inst{1,3}, S\"{o}ren Auer\inst{1,3}, Jeremy Debattista\inst{1,3}\dots}
 \institute{
 	University of Bonn; \\
-	\email{\{thakkar,dubey,sejdiu,jens.lehmann,auer\}@cs.uni-bonn.de}
+	\email{\{thakkar,dubey,sejdiu,jens.lehmann,auer,debattis\}@cs.uni-bonn.de}
 	\and 
 	University of Leipzig; \\
 	\email{ngonga@informatik.uni-leipzig.de}
@@ -94,31 +94,32 @@ In this position paper, we present LITMUS,  \dots
      
     \todoiteminline{Harsh}{all}{This needs re-phrasing, please contribute for writing this}
     
-Currently, we observe an enormous growth of structured data being made available on the Web as Open or Linked Data\footnote{http://lod-cloud.net/} as well as Big Data within organizations. 
+Currently, we observe an enormous growth of structured\todo[color=pink]{Jeremy: is it only structured? isn't litmus also a tool for un/semi-structured data?} data being made available on the Web as Open or Linked Data\footnote{http://lod-cloud.net/} as well as Big Data within organizations. 
 With such a rapid growth in the amount of data, managing this data has also become a challenging issue. 
 Modern day organizations face increasingly the need to search for data management tools, suited best for specific tasks. 
-Choosing the best data management tool however is challenging and cumbersome due to the limited comparability and compatibility. 
+Choosing the best data management tool however is challenging due to the limited comparability and compatibility. 
 With limited domain expertise and non-stop expansion of data the need for a standardised framework to benchmark and analyse the existing diverse data management landscape is of paramount importance.
 
-Despite the growing interest and use in both research and industrial communities, current DMS benchmark creators do not offer a common cross domain suite for creating task specific benchmarks and there is no single baseline to compare one against the other. 
-Moreover, re-producing or replicating benchmarks, created by others, is a non-trivial problem owing to reasons such as, non-standardised setup configurations, lack of publicly available resources (such as scripts, packages, etc) and lack of transparent evaluation policies. 
+Despite the growing interest and use in both research communities and the industry, current DMS benchmark creators\todo[color=pink]{Jeremy: creators? nah this does not sound right. evaluators?} do not offer a common cross-domain suite for creating task-specific benchmarks and there is no single baseline to compare one against the other\todo[color=pink]{Jeremy: re-phrase - split in 2 sentences?}. 
+Moreover, reproducing \todo[color=pink]{Jeremy: replicating has the same meaning as reproducing} benchmarks is a non-trivial problem owing to reasons such as, non-standardised\todo[color=pink]{Jeremy: what is a non-standardised setup config?} setup configurations, lack of publicly available resources (such as scripts, packages, etc\dots) and lack of transparent evaluation policies\todo[color=pink]{Jeremy: like?}. 
     %due to a variety of reasons including (i) unclear setup configuration, (ii) non-standard . as the unit of verification of the results for a whole systems. 
     %In order to fill the gaps (i) to help end user to choose the right system by showing the ranked results of the system's behaviors for the different parameter selection permutation, and (ii) the involvement of industry community to improve their systems by modeling a different challenges and pick a right pipeline for their needs.
     
 There have been many research efforts in the direction of benchmarking a range of DMS, including some which have also considered evaluating cross domain DMS {cite graphium, pandora}, but only to a limited scope. \todo[color=green]{Harsh: working on this, Need to add more information here..}
     
     
-In this paper we present LITMUS, an open extensible approach for benchmarking a wide variety of NoSQL Data Management Solutions (DMS). 
+In this paper we present LITMUS, an open extensible approach for benchmarking a wide variety of NoSQL\todo[color=pink]{Jeremy: is it only NoSQL DMS that the benchmark framework will evaluate? or is it generic, since before you mention 'cross-domain'?} Data Management Solutions. 
 LITMUS aims to support organizations which aspire to use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
-LITMUS will provide realistic performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. 
+LITMUS will provide realistic\todo[color=pink]{Jeremy: Do you mean \textbf{practical}? Realistic does not sound right here. It seems like previous benchmarks where just "toy benchmarks" whilst with litmus we do "real stuff"} performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. 
 \todoproofread{Sören}{Harsh}{Add more details in 2-3 sentences about the LITMUS approach}
 
 To put the reader in to the context of this work, we present the following \textbf{user scenario}: 
     
     \say{Harsh (say) works in a research project called WDAqua\footnote{WDAqua ITN - wdaqua.informatik.uni-bonn.de}. WDAqua aims towards building a data-driven question answering by using web data (which is available in various formats e.g. RDF, CSV, SQL, XML, etc). Harsh is responsible for ensuring efficient data management (storage and retrieval) for this project. There is an ocean of data management tools, each deliberately tailored for handling specific format of data, which use a wide variety of indexing, storage and query representation mechanisms. \textit{Harsh wants wants to assess the performance (benchmark) of these DMS against each other (for a varying degree of factors such as the query typology, indexing speed, index size, query response time, etc) and choose the best solution for his needs}. However, benchmarking is a task which demands tedious manual efforts, owing to the diversity in the nature of these DMS and the granularity of the repetitiveness involved within. 
     %The major reasons for this diversity is that each of these DMSs represent queries in a different language, employ a spectrum of indexing and storage mechanisms, etc.  
-    \textit{Harsh wants to automatise the whole benchmarking process of these cross domain DMSs, allowing easy integration, evaluation on custom loads, and fast analysis of the evaluation results}. He would also \textit{expect the framework to be flexible to integrate new DMSs to the plethora of existing systems and benchmark them against a baseline}. The answer to Harsh's questions is \textbf{LITMUS}. LITMUS is an open extensible platform for benchmarking cross-domain DMSs. LITMUS, will not only satisfy Harsh’s need for automatising the tedious benchmarking process, but also offer: \textit{\textbf{(1)}} an efficient way for replicating existing benchmarks (such as BSBM\cite{bizer2009berlin}, WAT-DIV\cite{alucc2014diversified}, etc), \textit{\textbf{(2)}} a wide set of performance evaluation measures/indicators tailored specifically keeping in mind the DMSs being benchmarked, and \textit{\textbf{(3)}} visualising the performance comparison of the DMSs on various intrinsic factors via custom charts, graphs and tabular data allowing easier and faster insight.}
+    \textit{Harsh wants to automatise the whole benchmarking process of these cross domain DMSs, allowing easy integration, evaluation on custom loads, and fast analysis of the evaluation results}. He would also \textit{expect the framework to be flexible to integrate new DMSs to the plethora of existing systems and benchmark them against a baseline}. The answer to Harsh's questions is \textbf{LITMUS}\todo[color=pink]{Jeremy: Why is it the answer to the question, when we do not yet know if it is feasible to do?}. LITMUS is an open extensible platform for benchmarking cross-domain DMSs. LITMUS, will not only satisfy Harsh’s need for automatising the tedious benchmarking process, but also offer: \textit{\textbf{(1)}} an efficient way for replicating existing benchmarks (such as BSBM\cite{bizer2009berlin}, WAT-DIV\cite{alucc2014diversified}, etc), \textit{\textbf{(2)}} a wide set of performance evaluation measures/indicators tailored specifically keeping in mind the DMSs being benchmarked, and \textit{\textbf{(3)}} visualising the performance comparison of the DMSs on various intrinsic factors via custom charts, graphs and tabular data allowing easier and faster insight.}
     \todoproofread{Harsh}{Maria}{}
+    \todo[color=pink,inline]{Jeremy: this is way too long. Also, it sounds like a TV commercial. I would move the objectives of the framework outside of the user scenario. This should be concise describing the current real-life problem. Take a look at my daQ submissions for example.}
     
     %The objectives of LITMUS are to:\todo[color=green]{Harsh@all: Do we need the objectives now? after having presented the user scenario}
      %\begin{itemize}[nosep]
@@ -138,15 +139,16 @@ We present the LITMUS framework and describe the components in brief in Section~
 \section{Related work}\label{relwork}
 
 Benchmarking is widely used for evaluating data stores. 
-Benchmarks exist for a variety of levels of abstraction from simple data models to graphs and triple stores or even entire enterprise systems.
-We describe the current state of the art in benchmarking, in particular benchmarks for (a) Relational databases, (b) Graph databases, (c) RDF stores, (d) Key-Value stores, (e) Wide Column stores and (f) Cross domain benchmarking efforts.
-We identify shortcomings and limitations of existing systems in order to employ LITMUS by extending these benchmarks to deal with the challenges forced by new systems.
+Benchmarks exist for a variety of levels of abstraction\todo[color=pink]{Jeremy: what do you mean by levels of bastraction?} from simple data models to graphs and triple stores or even entire enterprise systems.
+We describe the current state-of-the-art in benchmarking, in particular benchmarks for (a) Relational databases, (b) Graph databases, (c) RDF stores, (d) Key-Value stores, (e) Wide Column stores and (f) Cross-domain benchmarking efforts.
+We identify shortcomings and limitations of existing systems, in order to determine the gaps that LITMUS needs to take into consideration.
+%in order to develop LITMUS by extending these benchmarks to deal with the challenges forced by new systems.
 In addition to surveying existing work, we intend to focus mainly on the purpose and scope of the benchmarks.
     
     %Relational databases have standard benchmark suites such as TPC~\cite{Nambiar2011} for dealing with transaction processing, querying performance, data maintenance and other operations for a relational database.
     %The TPC~\cite{Nambiar2011} benchmark suit deals with transaction processing, querying performance, data maintenance and other operations for a relational database.
     In the context of \textit{Relational} DMSs there exists some well-established benchmarks, especially the well known plethora of Transaction Processing Performance Council (\textbf{TPC})~\cite{Nambiar2011} benchmarks.
-    TPC benchmarks use discrete metrics for measuring the performance of the relational DMS. The online transaction processing benchmarks \textbf{TPC-C} and \textbf{TPC-E} use transactions per minute metric. The analytics benchmarks \textbf{TPC-H} and decision support benchmarks \textbf{TPC-DS} use the queries per hour at size and cost (in USD) per performance metrics.
+    TPC benchmarks use discrete metrics for measuring the performance of the relational DMS. The online transaction processing benchmarks \textbf{TPC-C} and \textbf{TPC-E} use a transactions per minute metric. The analytics benchmarks \textbf{TPC-H} and decision support benchmarks \textbf{TPC-DS} use the queries per hour at size and cost per performance metrics.
     
     For benchmarking \textit{Graph} DMS, there are some existing works in their early stages (such as HPC Scalable Graph Analysis Benchmark~\cite{Dominguez-Sal:2010:SGD:1927585.1927590}, Graph 500~\cite{murphy2010introducing}, XGDBench~\cite{conf/cloudcom/DayarathnaS12}) dealing with graph suitability and graph analysis. However they fail on defining standards for graph modeling and query languages.
     
@@ -164,11 +166,11 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
     One of the most commonly used synthetic data based benchmark is \textbf{SP2Bench}~\cite{books/sp/virgilio09/SchmidtHMPL09}. Like BSBM and WAT-DIV, it also contains a data generator and a set of queries. SP2Bench uses DBLP\footnote{http://dblp.uni-trier.de/db/} bibliographic schema to generate arbitrarily large datasets and consist of fourteen queries which employ different SPARQL 1.0 operators (optional, union, filter, orderby, etc) but do not support reasoning tasks.
    
     
-    There are only a few efforts, countable on finger tips, which benchmark \textit{cross domain} DMS. \textbf{Pandora}\footnote{http://pandora.ldc.usb.ve/}, one such work, employs the Berlin SPARQL Benchmark data to compare RDF stores against Relational stores (Jena-TDB, Monetdb, GH-RDF-3X, PostgreSQL, 4Store). 
-    \textbf{Graphium}~\cite{flores2013graphium} is a similar study benchmarking RDF stores against Graph stores (Neo4J, Sparksee/DEX, HypergraphDB, RDF-3X) on graph datasets including a 10M triple graph data generated using the Berlin SPARQL Benchmark data generator. Recently, the ongoing work at \textbf{LDBC}~\cite{DBLP:journals/sigmod/AnglesBLF0ENMKT14} focuses on combining industry-strength benchmarks for graph and RDF data management systems.
-    The LDBC introduces a new bottleneck methodology for developing benchmark workloads, which try to combine user input with feedback's from systems experts.%\todo[color=green]{Gezim: @Harsh, please could you polish it for me and  make it clear that we do not want to involve any expert systems architects to do a cross-domain benchmarking?}
+    There are only a few efforts that benchmark \textit{cross-domain} DMS. \textbf{Pandora}\footnote{http://pandora.ldc.usb.ve/}, employs the Berlin SPARQL Benchmark data to compare RDF stores against Relational stores (Jena-TDB, Monetdb, GH-RDF-3X, PostgreSQL, 4Store). 
+    \textbf{Graphium}~\cite{flores2013graphium} is a similar study benchmarking RDF stores against Graph stores (Neo4J, Sparksee/DEX, HypergraphDB, RDF-3X) on graph datasets including a 10M triple graph data generated using the Berlin SPARQL Benchmark data generator. More recently, the \textbf{LDBC}~\cite{DBLP:journals/sigmod/AnglesBLF0ENMKT14} focuses on combining industry-strength benchmarks for graph and RDF data management systems.
+    The LDBC introduces a new bottleneck methodology for developing benchmark workloads, which try to combine user input with feedback's from systems' experts.%\todo[color=green]{Gezim: @Harsh, please could you polish it for me and  make it clear that we do not want to involve any expert systems architects to do a cross-domain benchmarking?}
     
-    The process of benchmarking DMSs is non-trivial, mostly due to the large amount of tedious human effort required for designing, administering, evaluating, and analysing the diverse nature of systems involved. The literature, until now, is more focused on benchmarking domain specific DMS, despite the need for integrating cross domain DMSs and automatising the tedious benchmarking process. LITMUS, is focused towards addressing these shortcomings  and serve as a open extensible platform to allow easy integration, benchmarking and analysis for the performance of a plethora of DMSs. There exist no such open, extensible and reusable framework exists to the best of our knowledge which allows to explore, analyse and play with such a wide range of DMSs.
+    The process of benchmarking DMSs is non-trivial, mostly due to the large amount of tedious human effort required for designing, administering, evaluating, and analysing the diverse nature of systems involved. The literature, until now, is more focused on benchmarking domain specific DMS, despite the need for integrating cross-domain DMSs and automatising the tedious benchmarking process. LITMUS, is focused towards addressing these shortcomings  and serve as a open extensible platform to allow easy integration, benchmarking and analysis for the performance of a plethora of DMSs. There exist no such open, extensible and reusable framework exists to the best of our knowledge which allows to explore, analyse and play with such a wide range of DMSs.
     Our aim is to satisfy these criteria by developing a benchmark platform to serving systems, portable to different end data structure representation through our extensible framework, scalable to large scale data sets, and employing formal operations on top of it.
     
     
