@@ -68,10 +68,10 @@
 \title{LITMUS: An Open Extensible Framework for Benchmarking RDF Data Management Solutions}
 
 
-\author{Harsh Thakkar\inst{1}, Mohnish Dubey\inst{1}, Gezim Sejdiu\inst{1}, Axel-Cyrille Ngonga Ngomo\inst{2}, Jens Lehmann\inst{1,3}, S\"{o}ren Auer\inst{1,3}, Jeremy Debattista\inst{1,3}\dots}
+\author{Harsh Thakkar\inst{1}, Mohnish Dubey\inst{1}, Gezim Sejdiu\inst{1}, Axel-Cyrille Ngonga Ngomo\inst{2}, Jeremy Debattista\inst{1,3}, Jens Lehmann\inst{1,3}, S\"{o}ren Auer\inst{1,3}\dots}
 \institute{
 	University of Bonn; \\
-	\email{\{thakkar,dubey,sejdiu,jens.lehmann,auer,debattis\}@cs.uni-bonn.de}
+	\email{\{thakkar,dubey,sejdiu,debattis,jens.lehmann,auer\}@cs.uni-bonn.de}
 	\and 
 	University of Leipzig; \\
 	\email{ngonga@informatik.uni-leipzig.de}
@@ -82,10 +82,12 @@
 \maketitle
 
 \begin{abstract}
-
 Developments in the context of Open, Big and Linked Data have led to an enormous growth of structured data. 
-To keep up with the pace of efficient consumption and management of the data at this rate, many Data Management Solutions (DMS) have been developed for specific task and applications.
-In this position paper, we present LITMUS,  \dots 
+To keep up with the pace of efficient consumption and management of the data at this rate, many data management solutions have been developed for specific task and applications.
+In this \textcolor{blue}{short} paper, we present LITMUS, \textcolor{blue}{a framework for benchmarking data management solutions. The idea behind LITMUS is to go beyond classical storage benchmarking frameworks by allowing for analysing the performance of frameworks across query languages. In this paper, we present the architecture of LITMUS as well as the considerations which led to this architecture.}
+
+
+\dots 
 \todoiteminline{Harsh}{all}{Please contribute in the abstract writing}
 
 \end{abstract}
@@ -94,32 +96,30 @@ In this position paper, we present LITMUS,  \dots
      
     \todoiteminline{Harsh}{all}{This needs re-phrasing, please contribute for writing this}
     
-Currently, we observe an enormous growth of structured\todo[color=pink]{Jeremy: is it only structured? isn't litmus also a tool for un/semi-structured data?} data being made available on the Web as Open or Linked Data\footnote{http://lod-cloud.net/} as well as Big Data within organizations. 
-With such a rapid growth in the amount of data, managing this data has also become a challenging issue. 
-Modern day organizations face increasingly the need to search for data management tools, suited best for specific tasks. 
-Choosing the best data management tool however is challenging due to the limited comparability and compatibility. 
-With limited domain expertise and non-stop expansion of data the need for a standardised framework to benchmark and analyse the existing diverse data management landscape is of paramount importance.
+Currently, we observe an enormous growth of structured data being made available on the Web as Open or Linked Data\footnote{http://lod-cloud.net/} as well as Big Data within organizations. 
+\textcolor{blue}{The rapid growth of the amount of data available across organizations as especially affected the data management layer of modern applications. Consequently, }
+%With such a rapid growth in the amount of data, managing this data has also become a challenging issue. 
+modern organizations increasingly face the need to search for data management tools that are best suited for the specific tasks at the core of their information management. 
+Choosing the best data management tool is however challenging due to the limited comparability and compatibility of existing evaluation results and benchmarks. 
+With limited domain expertise and non-stop expansion of data the need for standardised frameworks to benchmark and analyse the existing diverse data management landscape is consequently of paramount importance.
 
-Despite the growing interest and use in both research communities and the industry, current DMS benchmark creators\todo[color=pink]{Jeremy: creators? nah this does not sound right. evaluators?} do not offer a common cross-domain suite for creating task-specific benchmarks and there is no single baseline to compare one against the other\todo[color=pink]{Jeremy: re-phrase - split in 2 sentences?}. 
-Moreover, reproducing \todo[color=pink]{Jeremy: replicating has the same meaning as reproducing} benchmarks is a non-trivial problem owing to reasons such as, non-standardised\todo[color=pink]{Jeremy: what is a non-standardised setup config?} setup configurations, lack of publicly available resources (such as scripts, packages, etc\dots) and lack of transparent evaluation policies\todo[color=pink]{Jeremy: like?}. 
+Despite the growing interest and use in both research communities and the industry, current data management solutions (DMS) benchmark creators \todoinline{add references} do not offer common cross-domain suite for creating task-specific benchmarks. In addition, there is no single baseline to compare these cross-domain DMS one against the other. 
+Moreover, reproducing benchmarks is a non-trivial problem owing to reasons such as, non-standardised setup configurations, lack of publicly available resources (such as scripts, libraries, packages, etc\dots) and lack of transparent evaluation policies. 
     %due to a variety of reasons including (i) unclear setup configuration, (ii) non-standard . as the unit of verification of the results for a whole systems. 
     %In order to fill the gaps (i) to help end user to choose the right system by showing the ranked results of the system's behaviors for the different parameter selection permutation, and (ii) the involvement of industry community to improve their systems by modeling a different challenges and pick a right pipeline for their needs.
+%There have been many research efforts in the direction of benchmarking a range of DMS, including some which have also considered evaluating cross domain DMS {cite graphium, pandora}, but only to a limited scope. \todo[color=green]{Harsh: working on this, Need to add more information here..}
+\textcolor{blue}{Results in areas such as named entity recognition and linking \cite{gerbil} as well as question answering \cite{qald,bioasq} have however shown that the provision of standardized interfaces and measures can contribute to the improvement of the performance of software solutions.}      
     
-There have been many research efforts in the direction of benchmarking a range of DMS, including some which have also considered evaluating cross domain DMS {cite graphium, pandora}, but only to a limited scope. \todo[color=green]{Harsh: working on this, Need to add more information here..}
+In this paper we present \textcolor{blue}{the concept behind} LITMUS, an open extensible approach for benchmarking a wide variety of DMS \textcolor{blue}{that can be used to store RDF}. 
+LITMUS aims to provide support to organizations which aspiring use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
+LITMUS will provide realistic performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. 
+To put the reader in to the context of this work, and highlight the objectives of LITMUS, we present the following \textbf{user scenario}: 
     
-    
-In this paper we present LITMUS, an open extensible approach for benchmarking a wide variety of NoSQL\todo[color=pink]{Jeremy: is it only NoSQL DMS that the benchmark framework will evaluate? or is it generic, since before you mention 'cross-domain'?} Data Management Solutions. 
-LITMUS aims to support organizations which aspire to use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
-LITMUS will provide realistic\todo[color=pink]{Jeremy: Do you mean \textbf{practical}? Realistic does not sound right here. It seems like previous benchmarks where just "toy benchmarks" whilst with litmus we do "real stuff"} performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and querying benchmarking. 
-\todoproofread{Sören}{Harsh}{Add more details in 2-3 sentences about the LITMUS approach}
-
-To put the reader in to the context of this work, we present the following \textbf{user scenario}: 
-    
-    \say{Harsh (say) works in a research project called WDAqua\footnote{WDAqua ITN - wdaqua.informatik.uni-bonn.de}. WDAqua aims towards building a data-driven question answering by using web data (which is available in various formats e.g. RDF, CSV, SQL, XML, etc). Harsh is responsible for ensuring efficient data management (storage and retrieval) for this project. There is an ocean of data management tools, each deliberately tailored for handling specific format of data, which use a wide variety of indexing, storage and query representation mechanisms. \textit{Harsh wants wants to assess the performance (benchmark) of these DMS against each other (for a varying degree of factors such as the query typology, indexing speed, index size, query response time, etc) and choose the best solution for his needs}. However, benchmarking is a task which demands tedious manual efforts, owing to the diversity in the nature of these DMS and the granularity of the repetitiveness involved within. 
+    \say{Say Harsh works in a research project called WDAqua\footnote{WDAqua ITN - wdaqua.informatik.uni-bonn.de}. WDAqua aims towards building a data-driven question answering by using web data (which is available in various formats e.g. RDF, CSV, SQL, XML, etc). Harsh is responsible for ensuring efficient data management (storage and retrieval) for this project. There is an ocean of data management tools, each deliberately tailored for handling specific format of data, which use a wide variety of indexing, storage and query representation mechanisms. \textit{Harsh wants to assess the performance (benchmark) of these DMS against each other (for a varying degree of factors such as the query typology, indexing speed, index size, query response time, etc) and choose the best solution for the project's needs}. However, benchmarking is a task which demands tedious manual efforts, owing to the diversity in the nature of these DMS and the granularity of the repetitiveness involved within. 
     %The major reasons for this diversity is that each of these DMSs represent queries in a different language, employ a spectrum of indexing and storage mechanisms, etc.  
-    \textit{Harsh wants to automatise the whole benchmarking process of these cross domain DMSs, allowing easy integration, evaluation on custom loads, and fast analysis of the evaluation results}. He would also \textit{expect the framework to be flexible to integrate new DMSs to the plethora of existing systems and benchmark them against a baseline}. The answer to Harsh's questions is \textbf{LITMUS}\todo[color=pink]{Jeremy: Why is it the answer to the question, when we do not yet know if it is feasible to do?}. LITMUS is an open extensible platform for benchmarking cross-domain DMSs. LITMUS, will not only satisfy Harsh’s need for automatising the tedious benchmarking process, but also offer: \textit{\textbf{(1)}} an efficient way for replicating existing benchmarks (such as BSBM\cite{bizer2009berlin}, WAT-DIV\cite{alucc2014diversified}, etc), \textit{\textbf{(2)}} a wide set of performance evaluation measures/indicators tailored specifically keeping in mind the DMSs being benchmarked, and \textit{\textbf{(3)}} visualising the performance comparison of the DMSs on various intrinsic factors via custom charts, graphs and tabular data allowing easier and faster insight.}
-    \todoproofread{Harsh}{Maria}{}
-    \todo[color=pink,inline]{Jeremy: this is way too long. Also, it sounds like a TV commercial. I would move the objectives of the framework outside of the user scenario. This should be concise describing the current real-life problem. Take a look at my daQ submissions for example.}
+    \textit{Harsh wants to automatise the whole benchmarking process of these cross domain DMSs, allowing easy integration, evaluation on custom loads, and fast analysis of the evaluation results}. He would also \textit{expect the framework to be flexible to integrate new DMSs to the plethora of existing systems and benchmark them against a baseline}. The answer to project's needs is LITMUS, which is an open extensible platform for benchmarking cross-domain DMSs. LITMUS, will not only satisfy Harsh’s need for automatising the tedious benchmarking process, but also offer: \textit{\textbf{(1)}} an efficient way for replicating existing benchmarks (such as BSBM\cite{Bizer2009TheBS}, WAT-DIV\cite{alucc2014diversified}, etc), \textit{\textbf{(2)}} a wide set of performance evaluation measures/indicators tailored specifically keeping in mind the DMSs being benchmarked, and \textit{\textbf{(3)}} visualising the performance comparison of the DMSs on various intrinsic factors via custom charts, graphs and tabular data allowing easier and faster insight.}
+    \todoproofread{Harsh}{Maria}{and kindly improvise}
+
     
     %The objectives of LITMUS are to:\todo[color=green]{Harsh@all: Do we need the objectives now? after having presented the user scenario}
      %\begin{itemize}[nosep]
@@ -139,7 +139,7 @@ We present the LITMUS framework and describe the components in brief in Section~
 \section{Related work}\label{relwork}
 
 Benchmarking is widely used for evaluating data stores. 
-Benchmarks exist for a variety of levels of abstraction\todo[color=pink]{Jeremy: what do you mean by levels of bastraction?} from simple data models to graphs and triple stores or even entire enterprise systems.
+Benchmarks exist for a variety of levels of abstraction from simple data models to graphs and triple stores or even entire enterprise systems.
 We describe the current state-of-the-art in benchmarking, in particular benchmarks for (a) Relational databases, (b) Graph databases, (c) RDF stores, (d) Key-Value stores, (e) Wide Column stores and (f) Cross-domain benchmarking efforts.
 We identify shortcomings and limitations of existing systems, in order to determine the gaps that LITMUS needs to take into consideration.
 %in order to develop LITMUS by extending these benchmarks to deal with the challenges forced by new systems.
@@ -154,8 +154,8 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
     
     %Existing RDF benchmarks have several limitations, mainly because they do not provide a comparison between a wide variety of DMS. However, 
     The substantial increase in the number of applications that use RDF data, has advocated the need for a huge scale benchmarking effort on all aspects of RDF Data life cycle mostly focusing on query processing\cite{ngomo2016hobbit}.
-    RDF DMS benchmarks make use of real (i.e. DBPedia, Wikidata, etc) and synthetic (i.e. Berlin SPARQL Benchmark, WAT-DIV, etc) datasets, to evaluate DMS performance over custom stress-loads and setup environments\footnote{https://www.w3.org/wiki/RdfStoreBenchmarking}.
-    DBPedia SPARQL Benchmark \textbf{(DBPSB)}~\cite{Morsey2011}, which uses real data, assesses RDF DMSs performance over DBPedia by creating a query workload derived from the DBPedia query logs. Basically, the process is based on mining the query logs, creating clusters and analyzing the features of the SPARQL queries that were most frequently used. The benchmark covers most of the SPARQL 1.0 language features such as (union, optional,join) and distinct, filter conditions and operators. However, it does not consider more complex language features such as inference or decision support queries.
+    RDF DMS benchmarks make use of real (i.e. DBpedia, Wikidata, etc) and synthetic (i.e. Berlin SPARQL Benchmark, WAT-DIV, etc) datasets, to evaluate DMS performance over custom stress-loads and setup environments \cite{fineeval}.\footnote{https://www.w3.org/wiki/RdfStoreBenchmarking}
+    DBpedia SPARQL Benchmark \textbf{(DBPSB)}~\cite{Morsey2011}, which uses real data, assesses RDF DMSs performance over DBpedia by creating a query workload derived from the DBpedia query logs. Basically, the process is based on mining the query logs, creating clusters and analyzing the features of the SPARQL queries that were most frequently used. The benchmark covers most of the SPARQL 1.0 language features such as (union, optional,join) and distinct, filter conditions and operators. However, it does not consider more complex language features such as inference or decision support queries.
     The Lehigh University Benchmark (\textbf{LUBM})~\cite{Guo:2005:LBO:1741305.1741322} is intended to evaluate the performance of Semantic Web repositories over a large synthetic dataset that comply to a university domain ontology.
     The LUBM benchmark consist mainly some lookup and join queries, and not considering complex SPARQL 1.0 operations (optional, union) or even complex reasoning and inference.
     The Berlin SPARQL Benchmark (\textbf{BSBM})~\cite{Bizer2009TheBS}, is another synthetic data based benchmark, which consists of e-commerce use case built around a set of products that are offered by different vendors.
@@ -170,7 +170,7 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
     \textbf{Graphium}~\cite{flores2013graphium} is a similar study benchmarking RDF stores against Graph stores (Neo4J, Sparksee/DEX, HypergraphDB, RDF-3X) on graph datasets including a 10M triple graph data generated using the Berlin SPARQL Benchmark data generator. More recently, the \textbf{LDBC}~\cite{DBLP:journals/sigmod/AnglesBLF0ENMKT14} focuses on combining industry-strength benchmarks for graph and RDF data management systems.
     The LDBC introduces a new bottleneck methodology for developing benchmark workloads, which try to combine user input with feedback's from systems' experts.%\todo[color=green]{Gezim: @Harsh, please could you polish it for me and  make it clear that we do not want to involve any expert systems architects to do a cross-domain benchmarking?}
     
-    The process of benchmarking DMSs is non-trivial, mostly due to the large amount of tedious human effort required for designing, administering, evaluating, and analysing the diverse nature of systems involved. The literature, until now, is more focused on benchmarking domain specific DMS, despite the need for integrating cross-domain DMSs and automatising the tedious benchmarking process. LITMUS, is focused towards addressing these shortcomings  and serve as a open extensible platform to allow easy integration, benchmarking and analysis for the performance of a plethora of DMSs. There exist no such open, extensible and reusable framework exists to the best of our knowledge which allows to explore, analyse and play with such a wide range of DMSs.
+    The process of benchmarking DMSs is non-trivial, mostly due to the large amount of tedious human effort required for designing, administering, evaluating, and analysing the diverse nature of systems involved. The literature, until now, is more focused on benchmarking domain specific DMS, despite the need for integrating cross-domain DMSs and automatising the tedious benchmarking process. LITMUS, is focused towards addressing these shortcomings and serve as a open extensible platform to allow easy integration, benchmarking and analysis for the performance of a plethora of DMSs. There exist no such open, extensible and reusable framework exists to the best of our knowledge which allows to explore, analyse and play with such a wide range of DMSs.
     Our aim is to satisfy these criteria by developing a benchmark platform to serving systems, portable to different end data structure representation through our extensible framework, scalable to large scale data sets, and employing formal operations on top of it.
     
     
@@ -185,24 +185,28 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
 %    \end{itemize}
     
     
-   % {\color{red}{Other benchmarks, Other such frameworks? LDBC council work to be cited Gerbil to be cited BAT-framework to be cited }}
+   % {\color{red}{Other benchmarks, Other such frameworks? LDBC council work to nbe cited Gerbil to be cited BAT-framework to be cited }}
 
 \section{Objectives, Challenges and Outcomes}\label{Objectives}
     \subsection{Focus of the LITMUS framework}
-        The LITMUS framework aims at bridging the gaps in adopting, deploying and scaling the consumption of Big Linked Data. LITMUS is being built with a dedication to simplify the use, assessment and analysis of the performances of a wide spectrum of Linked Data management solutions for satisfying the end user's needs.  In particular, the LITMUS project will create: (i) A common ground for carrying out benchmarks for a plethora of cross domain DMSs (ii) Specific benchmarks for the selected DMSs (in the later phases), and  (iii) Reports and scientific studies on the correlation of a variety of factors (\textit{such as} query typology, data structures used for indexing, etc) with the performances of the DMSs. The LITMUS framework will also, during its final phase, be able to serve as a recommendation medium for suggesting particular DMSs for the user specific setting or application based on predefined requirements. 
+        The LITMUS framework aims at bridging the gaps in adopting, deploying and scaling the consumption of Linked Data. LITMUS focuses on simplifying the use, assessment and analysis of the performance of a wide spectrum of RDF DMSs for satisfying the end user's needs. In particular, the LITMUS project will create    \begin{itemize}[nosep]
+            \item \framebox[1.1\width]{\textbf{F1}} A common ground for carrying out benchmarks for a plethora of cross domain DMSs and a uniform and replicable way comparing different benchmarks
+            \item \framebox[1.1\width]{\textbf{F2}} (i) interoperable machine-readable reports and (ii) scientific studies on the correlation of a variety of factors (\textit{such as} query typology, data structures used for indexing, etc) with respect to the performance DMSs (ref. sec \ref{outcomes}). 
+            \item \framebox[1.1\width]{\textbf{F2}} The LITMUS framework will also serve as a recommendation medium for suggesting particular DMSs and benchmarks for the user specific setting or application based on predefined requirements by the end user.  
+        \end{itemize}  
     \subsection{Challenges to be addressed}\label{challenges}
-        In order to develop such an open extensible benchmarking platform (LITMUS), there are three key challenges which have to be addressed. We describe them in brief as follows:
+        To develop such an open extensible benchmarking platform, there are three key challenges which have to be addressed. We describe them in brief as follows:
         \begin{itemize}[nosep]
-            \item \framebox[1.1\width]{\textbf{C1}} \textbf{Data conversion}: This challenge demands a generic data conversion mechanism. This will allow the user to convert the input data to a format interpretable by the corresponding DMS (e.g. RDF to CSV (Comma Separated Value), JSON (JavaScript Object Notation),  and SQL (Structured Query Language).
+            \item \framebox[1.1\width]{\textbf{C1}} \textbf{Data conversion}: This challenge demands a generic data conversion mechanism which will allow the user to convert the input data to a format interpretable by the corresponding DMS (e.g. RDF to CSV (Comma Separated Value), JSON (JavaScript Object Notation),  and Relational data (SQL tables). The focus is to represent the input data in multiple formats, keeping the end user as isolated as possible from the technicalities of the conversion process. One such work, addressing this issue is \cite{attardexconquer}.
             \item \framebox[1.1\width]{\textbf{C2}} \textbf{Query Conversion:} 
-            One of the substantial research gap is the language (query language) barrier. Since all query languages are different in a their structure and expressivity, and the DMS have different query languages, there is a need to develop an intermediate mechanism to convert or express the logic of one query (from SPARQL) to the other respective language (\textit{say} CYPHER, SQL, CQL, etc). For instance, path queries (in SPARQL) cannot be expressed in an equivalent manner in SQL. This requires an exhaustive study of the expressivity of query languages and a formal analysis of how they can be mapped to other languages without altering the meaning of the query. This study will provide us with deep insights about the functionality of various query languages, their strengths and limitations.
-            also propose a solution approach in the block diagram (as mentioned above).
+            One of the substantial research gap is the language (query language) barrier. A cross domain benchmarking of DMSs demands that the queries be represented in all the languages and formats supported by the respective tools. Since all query languages are different in a their structure and expressive properties, not all types (features) of queries are supported in all query languages. For instance, \textcolor{blue}{complex} path queries (in SPARQL, \textcolor{blue}{in particular Kleene stars}) cannot be expressed in an equivalent SQL query. There is a need to develop an intermediate mechanism to convert or express the logic of one query (\textit{say} from SPARQL) to the other respective language (\textit{say} CYPHER, SQL, CQL, etc). This requires an exhaustive study of the expressivity of query languages and a formal analysis of whether and how they can be mapped to other languages without altering the meaning (semantics) of the query. This study will provide us with deep insights about the functionality of various query languages, their strengths and limitations.
+            %also propose a solution approach in the block diagram (as mentioned above).
             \item \framebox[1.1\width]{\textbf{C3}} \textbf{Performance measures/indicators:} 
-            The performance of a DMS can be assessed on a wide variety of metrics/features/indicators. It is necessary in order to conduct a correlation analysis of the impact of the diversity in queries and data on storage and indexing efficiency of the DMS. Apart from the traditional performance measures such as precision, recall, index size, storage size, number of triples, query response time, etc there is a need to explore more complex indicators of performance to successfully determine their correlation with the type of data and queries.
+            The performance of a DMS can be assessed on a wide variety of metrics/features/indicators. In order to perform an insightful correlation analysis of the impact of the diversity in queries and data \textbf{on} storage and indexing efficiency of the DMS, it becomes necessary to explore more complex performance indicators and measures apart from the traditional performance measures such as precision, recall, index size, storage size, number of triples, query response time, etc.
         \end{itemize}
     
-    \subsection{Outcomes of LITMUS}
-    The artifacts produced by the research and development activity for the LITMUS project can be grouped into two groups: \textit{(A1)} scientific studies and \textit{(A2)} framework/software. 
+    \subsection{Outcomes of LITMUS}\label{outcomes}
+    The artifacts of the LITMUS project can be clubbed into two groups: \textit{(A1)} scientific studies and \textit{(A2)} framework/software. 
     
     \framebox[1.1\width]{\textbf{A1}}\textit{Scientific studies:} 
         \begin{itemize}[nosep]
@@ -213,16 +217,16 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
         
         \framebox[1.1\width]{\textbf{A2}} \textit{Framework/Software (i.e. algorithm(s), tools, etc):} 
         \begin{itemize}[nosep]
-            \item An automatic mechanism for converting RDF data to multiple data formats on the fly (such as CSV, JSON, SQL, etc), enabling compatible data input for cross domain DMSs. 
-            \item A novel automatic SPARQL to any query language converter enabling compatible query input for cross domain DMSs.
-            \item An API allowing easy integration and deployment of third party DMSs for benchmarking in LITMUS
-            \item An open extensible benchmarking platform, LITMUS, for cross domain DMS performance evaluation.
+            \item Automatic mechanisms for converting RDF data to multiple data formats on the fly (such as CSV, JSON, SQL, etc), enabling compatible data input for cross domain DMSs. 
+            \item Novel approaches for the automatic conversion of SPARQL to a \textit{specific} query language converting mechanism, enabling compatible query input for cross domain DMSs.
+            \item An API allowing easy integration and deployment of third party DMSs for benchmarking in LITMUS.
+            \item An open extensible benchmarking platform, LITMUS, for cross domain DMS performance evaluation and easy replciation of exisiting benchmarks.
                % \todoproofread{Harsh}{all}{and Review too}
 
     \subsection{Target audience}
         \begin{itemize}[nosep]
             \item \textbf{Technology Vendors:}
-            This addresses the Industrial/Commercial DMS developer fraternity (such as system and data analysts, system developers, system architects) who thrive towards developing more and more advanced DMS for an efficient consumption of BIG data.
+            This addresses the Industrial/Commercial DMS developer fraternity (such as system and data analysts, system developers, system architects) who thrive towards developing more and more advanced DMS for an efficient consumption of Big Data.
             \item \textbf{Technology Consumers:}
             The users (personnel from the private and commercial organisations, associations, etc) seeking recommendation for the best solution for their needs can simply compare a wide range of DMS against a spectrum of desired parameters (types of queries, data, performance indicators) and choose the optimal one for their needs. 
             \item \textbf{Technology Researchers:}
@@ -244,7 +248,7 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
         
 
     \subsection{Architecture Overview}
-        The LITMUS architecture comprises of four major facets or components: Data Facet (F1), Query Facet (F2), System Facet (F3) and the Benchmarking core (F4). Figure \ref{fig:benchmark_arch} illustrates the abstract workflow of the LITMUS framework. We now explain the role of each facet. 
+        The LITMUS architecture will comprise four major facets: a Data Facet (F1), a Query Facet (F2), a System Facet (F3) and the Benchmarking core (F4). Figure \ref{fig:benchmark_arch} illustrates the abstract workflow of the LITMUS framework. We now explain the role of each facet. 
          
         \begin{figure}[h]
             \centering
@@ -254,12 +258,12 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
             \label{fig:benchmark_arch}
         \end{figure}
         
-        \textbf{Data Facet \framebox[1.1\width]{F1}:} The Data Facet consists of two modules, \textit{(i)} Dataset(s) and \textit{(ii)} Data Integration Module. The \textit{dataset(s)} are the datasets chosen for benchmarking. These may be, real datasets such as DBpedia\footnote{http://wiki.dbpedia.org/}, Wikidata\footnote{https://www.wikidata.org}, etc or synthetic datasets such as the Berlin SPARQL Benchmarking (BSBM)~\cite{bizer2008benchmarking,bizer2009berlin}, Waterloo SPARQL Diversity Test Suite (WatDiv)~\cite{alucc2014diversified}, etc or hybrid datasets which comprise of both real and synthetic data. 
+        \textbf{Data Facet \framebox[1.1\width]{F1}:} The Data Facet consists of two modules, \textit{(i)} Dataset(s) and \textit{(ii)} Data Integration Module. The \textit{dataset(s)} are the datasets chosen for benchmarking. These may be real datasets such as DBpedia\footnote{http://wiki.dbpedia.org/} Wikidata,\footnote{https://www.wikidata.org}; synthetic datasets such as the Berlin SPARQL Benchmarking (BSBM)~\cite{bizer2008benchmarking,Bizer2009TheBS}, Waterloo SPARQL Diversity Test Suite (WatDiv)~\cite{alucc2014diversified}, or hybrid datasets which comprise both real and synthetic data. 
         The \textit{Data Integration Module}, one of the key contributions of the framework, is responsible for (a) making the data available to the system in requested formats (such as .NT, CSV, SQL, JSON) by carrying out appropriate data conversion and mapping tasks (i.e. Challenge \textbf{C1}), and (b) loading the desired format of data to the respective DMSs selected for the benchmark. 
         
-        \textbf{Query Facet \framebox[1.1\width]{F2}:} The Query Facet consists of two modules. (i) Queryset(s), and (ii) The Query Conversion Module. The \textit{Queryset} refers to the set of query input files. The input queries are in SPARQL. The \textit{Query Conversion Module} will also be one of the key components of the LITMUS framework addressing the language barrier (Challenge \textbf{C2}). This module is responsible for: (i) converting the input SPARQL queries to respective DMSs query language (for instance, SQL, CYPHER, CQL, etc). The conversion will be performed using a state-of-the-art algorithm/technique which involves an intermediate language representation form. Thus, the \textit{Query Conversion Module} module will allow a wide variety of SPARQL queries (such as path, star-shaped and snowflake queries) to be converted into a wide variety of query languages, ultimately solving the language barrier.
+        \textbf{Query Facet \framebox[1.1\width]{F2}:} The Query Facet consists of two modules. (i) Queryset(s), and (ii) the Query Conversion Module. The \textit{Queryset} refers to the set of query input files. The input queries are in SPARQL. The \textit{Query Conversion Module} will also be one of the key components of the LITMUS framework addressing the language barrier (Challenge \textbf{C2}). This module is responsible for: (i) converting the input SPARQL queries to respective DMSs query language (for instance, SQL, CYPHER, CQL, etc). The conversion will be performed using a state-of-the-art algorithm/technique which involves an intermediate language representation form. Thus, the \textit{Query Conversion Module} module will allow a wide variety of SPARQL queries (such as path, star-shaped and snowflake queries) to be converted into a wide variety of query languages, ultimately solving the language barrier.
         
-        \textbf{System Facet \framebox[1.1\width]{F3}:} The System Facet, like the previous facets, also consists of two key modules, (i) DMSs and (ii) DMS Configuration and Integration module. The \textit{DMSs} module  constitutes of the DMS selected for the benchmark. The \textit{DMS Configuration and Integration} module is responsible for (i) providing easy integration via wrapper(s) or as a plugin of the DMS to the end user, (ii) Monitor and configure the the integrated DMS for the benchmark. On top of this, this module will make use \textit{dockers} for ensuring a fair allocation of resources and necessary isolation required for conducting realistic benchmarks. 
+        \textbf{System Facet \framebox[1.1\width]{F3}:} The System Facet also consists of two key modules, (i) DMSs and (ii) DMS Configuration and Integration module. The \textit{DMSs} module  constitutes of the DMS selected for the benchmark. The \textit{DMS Configuration and Integration} module is responsible for (i) providing easy integration via wrapper(s) or as a plugin of the DMS to the end user, (ii) Monitor and configure the the integrated DMS for the benchmark. On top of this, this module will make use \textit{dockers} for ensuring a fair allocation of resources and necessary isolation required for conducting realistic benchmarks. 
         
         \textbf{Benchmarking core \framebox[1.1\width]{F4}:} The Benchmarking core (aka LITMUS core) is the heart of the LITMUS framework, consisting of three modules (i) Controller and Tester, (ii) Profiler, and (iii) Analyser. The \textit{Controller and Tester} is responsible for executing the respective scripts for: loading the data and queries to their corresponding DMSs, creating and validating the specified system configurations, and finally executing the benchmark on the selected setting. The \textit{Profiler} is responsible for: (a) generation and loading of various profiles (stress loads, query variations, etc) for conducting the benchmark tests and (b) writing the benchmark results profile-wise to the files (disk). The \textit{Analyser} is responsible for the collection of the results of the benchmark from the \textit{Profiler} and generates the performance evaluation reports. It also carries out the correlation analysis between the aforementioned  parameters by the user. The final results (reports) are then presented to the end user in a suitable visualization format (such as plots, tables, charts etc)
         %\todoproofread{Harsh}{all}{and Review too}
@@ -318,7 +322,7 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
 
   
 \section*{Acknowledgments}\label{sec:Acknowledgments}
-The parts of this work are supported by funding received from the European Union's Horizon 2020 research and innovation program under the Marie Sklodowska-Curie grant agreement No 642795 (WDAqua ITN).
+Parts of this work are supported by funding received from the European Union's Horizon 2020 research and innovation program under the Marie Sklodowska-Curie grant agreement No 642795 (WDAqua ITN). This work was also supported by grants from the EU H2020 Framework Programme provided for the projects Big Data Europe (GA no. 644564) and HOBBIT (GA no. 688227).
 
 \bibliographystyle{abbrv}
 \bibliography{ref}
