@@ -92,8 +92,8 @@ In this position paper we present the conceptual architecture of LITMUS as well 
 %Currently, we observe a
 Vast amounts of structured (following Linked Data principles) and un/semi-structured data is constantly being made available on the Web, often in an open manner\footnote{With \emph{open} we follow the Open Data Definition~\url{http://opendefinition.org}}, and within organisations.
 This rapid growth of data, available across organisations, has affected the data management layer of modern applications. 
-\todo{CL: The message of the following sentence is almost void or tautological; try to rephrase, or delete at least parts, if you can't rephrase.}
-\todo[color=pink]{Jeremy: what are modern applications?}
+%\todo{CL: The message of the following sentence is almost void or tautological; try to rephrase, or delete at least parts, if you can't rephrase.}
+%\todo[color=pink]{Jeremy: what are modern applications?}
 %The rapid growth of the amount of data available across organisations is especially affected the data management layer of modern applications. 
 Consequently,
 %With such a rapid growth in the amount of data, managing this data has also become a challenging issue. 
@@ -108,22 +108,22 @@ Despite the growing interest and use in both research and the industry communiti
 the creators of benchmarks for Data Management Solutions (DMS)~\cite{alucc2014diversified,Bizer2009TheBS} do not offer a common 
 %\todo{CL: the relevance of the cross-domain aspect is not explained well.  What are different domains of interest, what existing DMSs are limited to specific domains, why is a cross-domain analysis of interest?}\todo[color=green]{I donot quite understand this. Also, for this reason, we have a very explanative user scenario, IMHO}
 suite for performing cross-domain benchmarks (i.e. one-to-one comparison of RDF, Graph, Wide-column, Relational, etc stores). In addition, there is no significant baseline to compare these cross-domain DMSs one against the other. 
-Moreover, reproducing benchmarks is a non-trivial problem owing to reasons such as non-standardised setup configurations, lack of publicly available resources (such as scripts, libraries, packages, etc\dots) and lack of transparent evaluation policies. Results in areas such as named entity recognition and linking~\cite{gerbil} as well as question answering~\cite{bioasq,qald} have, however, shown that the provision of standardised interfaces and measures can contribute to the improvement of the performance of software solutions. 
+Moreover, reproducing benchmarks is a non-trivial problem owing to reasons such as non-standardised setup configurations, lack of publicly available resources (such as scripts, libraries, packages, etc.) and lack of transparent evaluation policies. Results in areas such as named entity recognition and linking~\cite{gerbil} as well as question answering~\cite{bioasq,qald} have, however, shown that the provision of standardised interfaces and measures can contribute to the improvement of the performance of software solutions. 
     
 In this position paper we present the concept behind LITMUS, an open extensible approach for benchmarking a wide variety of DMS for storing RDF. 
 LITMUS aims to provide support to organisations aspiring to use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
 LITMUS will provide a realistic performance evaluation platform covering a plethora of heterogeneous technologies (see Section~\ref{litmus_framework}) for storage and query benchmarking. 
 To put the reader into the context of this work, and to highlight the objectives of LITMUS, we present the following \textbf{user scenario}: 
     
-    {\small \say{The WDAqua research project\footnote{WDAqua ITN -- \url{http://wdaqua.eu}} aims towards building a data-driven question answering platform by using Web data, available in various formats, e.g., RDF, CSV, SQL, or XML. Harsh is responsible for ensuring efficient data management (storage and retrieval) for this project. 
+    {\small \say{The WDAqua research project\footnote{WDAqua ITN -- \url{http://wdaqua.eu}} aims towards building a data-driven question answering platform by using Web data, available in various formats, e.g., RDF, CSV, SQL, or XML. Harsh, a researcher within the project,  is responsible for ensuring efficient data management (storage and retrieval) for this project. 
     There is a large number of DMSs, each deliberately tailored to handling specific formats of data and queries, which need to be benchmarked to select the best solution for the project's needs. 
     %\textit{Harsh wants to assess the performance (benchmark) of these DMS against each other and choose the best solution for the project's needs}. 
-    Benchmarking of DMSs is non-trivial: it takes large amounts of human effort in designing, administering, evaluating, and analysing the diverse systems involved. 
+    However, benchmarking of DMSs is non-trivial: it takes large amounts of human effort in designing, administering, evaluating, and analysing the diverse systems involved. 
     %Benchmarking is a task which demands tedious manual efforts, owing to the diversity in the nature of these DMS and the granularity of the repetitiveness involved within. 
-    Additionally, for the research project, a large set of%independent 
+    Additionally, for the research project, a large set of %independent 
     factors, e.g., query typology, indexing speed, index size, query response time, and dataset size, need to be considered to ensure reproducibility and generality of the observed experimental results.
     %The major reasons for this diversity is that each of these DMSs represent queries in a different language, employ a spectrum of indexing and storage mechanisms, etc.  
-    \textit{Harsh, a researcher within the project, wants to automate the whole benchmarking process, allowing easy integration, evaluation on custom stress loads, and fast analysis of the evaluation results}. He would also \textit{expect the framework to be flexible to integrate new DMSs to the plethora of existing systems and benchmark them against a baseline}.
+    \textit{Harsh, wants to automate the whole benchmarking process, allowing easy integration, evaluation on custom stress loads, and fast analysis of the evaluation results}. He would also \textit{expect the framework to be flexible to integrate new DMSs to the plethora of existing systems and benchmark them against a baseline}.
     Thus, Harsh's research question is: \textit{Can a computational framework provide the required support for identifying the independent factors of his experiments, and for analysing and interpreting of the experimental results?}.
     The answer to this research question is \textit{yes}, and the computational framework is LITMUS, an open extensible platform for benchmarking cross-domain DMSs.
     LITMUS will not only satisfy Harsh’s need for automating the tedious benchmarking process, but will also offer: \textit{\textbf{(1)}} an efficient way for replicating existing benchmarks (e.g., BSBM~\cite{Bizer2009TheBS} or WAT-DIV~\cite{alucc2014diversified}); \textit{\textbf{(2)}} a wide set of performance evaluation measures/indicators tailored specifically for the DMS being evaluated; and \textit{\textbf{(3)}} the comparison and visualisation of the performance of benchmarked DMSs on various intrinsic factors via custom charts, graphs and tabular data.}}%, allowing easier and faster insight.}}
