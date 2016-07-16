@@ -91,7 +91,6 @@ In this position paper we present the conceptual architecture of LITMUS as well 
      
 %Currently, we observe a
 Vast amounts of structured (following Linked Data principles) and un/semi-structured data is constantly being made available on the Web, often in an open manner\footnote{With \emph{open} we follow the Open Data Definition~\url{http://opendefinition.org}}, and within organisations.
-%An enormous growth of structured data is being made available on the Web as Open or Linked Data\todo{CL: I wrapped this into \textbackslash url; please do the same everywhere.}\footnote{\url{http://lod-cloud.net/}} as well as Big Data within organisations. 
 This rapid growth of data, available across organisations, has affected the data management layer of modern applications. 
 \todo{CL: The message of the following sentence is almost void or tautological; try to rephrase, or delete at least parts, if you can't rephrase.}
 \todo[color=pink]{Jeremy: what are modern applications?}
@@ -104,17 +103,12 @@ With regard to the limited domain expertise of the end user,
 %and the never ending expansion of data
 the need for standardised frameworks to benchmark and analyse the existing diverse data management platforms is consequently of paramount importance.
 
-Despite the growing interest and use in both research and the industry communities, current 
-\todo{*CL: ``data management solutions benchmark creators''?! -- Rephrase to give it a more comprehensible structure!  Do you mean ``creators of benchmarks for data management solutions''? Jeremy: is benchmarking tools better? I have no idea how to make this better}\todo{CL: Are you sure this is a scientific term?  ``Solution'' sounds like marketing jargon.}\todo[color=green]{Harsh: data management software/platform/solution/framework can/are be/being used interchangeably, given the purpose of use.} 
-creators of benchmarks for Data Management Solutions (DMS)~\cite{alucc2014diversified,Bizer2009TheBS} do not offer a common 
-\todo{CL: the relevance of the cross-domain aspect is not explained well.  What are different domains of interest, what existing DMSs are limited to specific domains, why is a cross-domain analysis of interest?}
-suite for performing task-specific benchmarks.
-In addition, there is no single baseline to compare these cross-domain DMS one against the other. 
-Moreover, reproducing benchmarks is a non-trivial problem owing to reasons such as non-standardised setup configurations, lack of publicly available resources (such as scripts, libraries, packages, etc\dots) and lack of transparent evaluation policies. 
-    %due to a variety of reasons including (i) unclear setup configuration, (ii) non-standard . as the unit of verification of the results for a whole systems. 
-    %In order to fill the gaps (i) to help end user to choose the right system by showing the ranked results of the system's behaviors for the different parameter selection permutation, and (ii) the involvement of industry community to improve their systems by modeling a different challenges and pick a right pipeline for their needs.
-%There have been many research efforts in the direction of benchmarking a range of DMS, including some which have also considered evaluating cross-domain DMS {cite graphium, pandora}, but only to a limited scope. \todo[color=green]{Harsh: working on this, Need to add more information here..}
-Results in areas such as named entity recognition and linking~\cite{gerbil} as well as question answering~\cite{bioasq,qald} have, however, shown that the provision of standardised interfaces and measures \todo{CL: As the following statement is important to our research (because our work is basically based on the same assumption) it wouldn't hurt to add one sentence more detail, i.e.\ in what \emph{way} these contribute to improvements.}can contribute to the improvement of the performance of software solutions.
+Despite the growing interest and use in both research and the industry communities, currently 
+%\todo{CL: Are you sure this is a scientific term?  ``Solution'' sounds like marketing jargon.}\todo[color=green]{Harsh: data management software/platform/solution/framework can/are be/being used interchangeably, given the purpose of use.} 
+the creators of benchmarks for Data Management Solutions (DMS)~\cite{alucc2014diversified,Bizer2009TheBS} do not offer a common 
+%\todo{CL: the relevance of the cross-domain aspect is not explained well.  What are different domains of interest, what existing DMSs are limited to specific domains, why is a cross-domain analysis of interest?}\todo[color=green]{I donot quite understand this. Also, for this reason, we have a very explanative user scenario, IMHO}
+suite for performing cross-domain benchmarks (i.e. one-to-one comparison of RDF, Graph, Wide-column, Relational, etc stores). In addition, there is no significant baseline to compare these cross-domain DMSs one against the other. 
+Moreover, reproducing benchmarks is a non-trivial problem owing to reasons such as non-standardised setup configurations, lack of publicly available resources (such as scripts, libraries, packages, etc\dots) and lack of transparent evaluation policies. Results in areas such as named entity recognition and linking~\cite{gerbil} as well as question answering~\cite{bioasq,qald} have, however, shown that the provision of standardised interfaces and measures can contribute to the improvement of the performance of software solutions. 
     
 In this position paper we present the concept behind LITMUS, an open extensible approach for benchmarking a wide variety of DMS for storing RDF. 
 LITMUS aims to provide support to organisations aspiring to use Linked Data management technologies in a wide spectrum of applications and magnitudes. 
@@ -156,7 +150,9 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
     The online transaction processing benchmarks \textbf{TPC-C} and \textbf{TPC-E} use a transactions per minute metric.
     The analytics \textbf{TPC-H} and decision support \textbf{TPC-DS} benchmarks use the queries per hour and cost per performance metrics respectively.
     
-    For benchmarking \textit{Graph} DMS, there are some existing works in their early stages (such as \textbf{HPC} Scalable Graph Analysis Benchmark~\cite{Dominguez-Sal:2010:SGD:1927585.1927590}, \textbf{Graph 500}~\cite{murphy2010introducing}, \textbf{XGDBench}~\cite{conf/cloudcom/DayarathnaS12}) dealing with \todo[color=green]{CL: I'm not sure ``graph suitability'' is a proper term.}graph suitability and graph analysis.
+    For benchmarking \textit{Graph} DMS, there are some existing works in their early stages (such as \textbf{HPC} Scalable Graph Analysis Benchmark~\cite{Dominguez-Sal:2010:SGD:1927585.1927590}, \textbf{Graph 500}~\cite{murphy2010introducing}, \textbf{XGDBench}~\cite{conf/cloudcom/DayarathnaS12}) dealing with 
+    %\todo[color=green]{CL: I'm not sure ``graph suitability'' is a proper term.}
+    graph suitability transformations and graph analysis.
     However they fail to define standards for graph modeling and query languages.
     
     %Existing RDF benchmarks have several limitations, mainly because they do not provide a comparison between a wide variety of DMS. However, 
@@ -164,7 +160,9 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
     RDF DMS benchmarks make use of real (i.e., DBpedia or Wikidata) and synthetic (i.e., Berlin SPARQL Benchmark or WAT-DIV) datasets to evaluate DMS performance over custom stress-loads and setup environments \cite{fineeval}.\footnote{https://www.w3.org/wiki/RdfStoreBenchmarking}
     DBpedia SPARQL Benchmark \textbf{(DBPSB)}~\cite{Morsey2011} assesses RDF DMSs performance over DBpedia by creating a query workload derived from the DBpedia query logs. 
     
-    The aim of the Lehigh University Benchmark (\textbf{LUBM})~\cite{Guo:2005:LBO:1741305.1741322} is to evaluate the performance of Semantic Web \todo[color=green]{CL: If ``repository'' means ``triple store'' then use the word ``triple store'' for consistency with the rest of this paper.}repositories over a large synthetic dataset that complies to a university domain ontology.
+    The aim of the Lehigh University Benchmark (\textbf{LUBM})~\cite{Guo:2005:LBO:1741305.1741322} is to evaluate the performance of Semantic Web triple stores
+    %\todo[color=green]{CL: If ``repository'' means ``triple store'' then use the word ``triple store'' for consistency with the rest of this paper.}repositories 
+    over a large synthetic dataset that complies to a university domain ontology.
     %The LUBM benchmark consist mainly some lookup and join queries, and not considering complex SPARQL 1.0 operations (optional, union) or even complex reasoning and inference.
     The Berlin SPARQL Benchmark (\textbf{BSBM}~\cite{Bizer2009TheBS}) is another benchmark based on synthetic data, which addresses e-commerce use cases built around a set of products offered by different vendors.
     %\todo[color=pink]{Jeremy: but why is this important for the paper? i think BSBM enables the benchmarking by generating data related to e-commerce + sparql queries to test performance. IIRC LUBM is more oriented towards reasoning benchmarks, whilst BSBM is more 'data' oriented.}.
@@ -217,11 +215,10 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
             \item \framebox[1.1\width]{\textbf{C3}} \textbf{Performance indicators:} 
             The performance of a DMS can be assessed with regard to a variety of indicators.
             Dealing with the diverse characteristics of the DMSs, it is necessary to explore complex performance indicators in contrast to traditional ones, namely precision, recall, index size, storage size, number of triples, and query response time.
-            %Complex performance indicators should be explored 
-            %To conduct a correlation analysis of the impacts of diverse types of queries and data on the storage and indexing efficacy of DMSs, it is necessary to explore more complex performance indicators than the traditional ones of
         \end{itemize}
     
-    \subsection{Outcomes of LITMUS}\label{outcomes}
+    \subsection{Outcomes of LITMUS}
+    \label{outcomes}
     The artifacts resulting from the LITMUS project will be \textit{(A1)} scientific studies and \textit{(A2)} frameworks/software. 
     
     \framebox[1.1\width]{\textbf{A1}}\textit{Scientific studies:} 
@@ -274,7 +271,7 @@ In addition to surveying existing work, we intend to focus mainly on the purpose
         \textbf{System Facet \framebox[1.1\width]{F3}:} The System Facet also consists of two key modules, (i) DMSs and (ii) DMS Configuration and Integration module.
         The \textit{DMSs} module consists of the DMS selected for the benchmark.
         The \textit{DMS Configuration and Integration} module is responsible for (i) providing easy integration, via wrapper(s) or as a plugin, of the DMS, and (ii) monitor and configure the the integrated DMS for the benchmark.
-        On top of this, this module will make use of \textit{Docker\footnote{Docker Hub -- \url{https://hub.docker.com/}} containers} to ensure a fair allocation of resources and to provide the necessary isolation required for conducting realistic benchmarks. 
+        On top of this, this module will make use of \textit{Docker\footnote{Docker -- \url{https://www.docker.com/}} containers} to ensure a fair allocation of resources and to provide the necessary isolation required for conducting realistic benchmarks. 
         
         \textbf{Benchmarking Core \framebox[1.1\width]{F4}:} The Benchmarking Core is the heart of the LITMUS framework, consisting of three modules: (i) Controller and Tester, (ii) Profiler, and (iii) Analyser.
         The \textit{Controller and Tester} is responsible for executing the respective scripts for loading data and fetching the queries to their corresponding DMSs, creating and validating the specified system configurations, and finally executing the benchmark on the selected setting.
